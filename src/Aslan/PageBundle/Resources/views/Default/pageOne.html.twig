@@ -1,0 +1,29 @@
+<div class="wrap_content">
+    <div class="content">
+        {% if page.pageimgs is defined %}
+        {% if page.pageimgs|length > 0 %}
+        <div class="flexslider">
+            <ul class="slides">
+                {% for img in page.pageimgs %}
+                <li><img src="{{ image('media/pictures/'~img.img).zoomCrop(1030, 460) }}" /></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %} 
+        {% endif %}    
+        <div class="text">
+            <h1>
+            {% if page.name is defined %}
+            {{ page.name }}                    
+            {% else %}
+            {{ page.head }}                    
+            {% endif %}        
+            </h1>
+            {% if page.text is defined %}
+            {{ page.text|raw }}                    
+            {% else %}
+            {{ page.page|raw }}                    
+            {% endif %} 
+        </div>    
+    </div>    
+</div>

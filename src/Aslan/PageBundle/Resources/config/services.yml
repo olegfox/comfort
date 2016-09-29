@@ -1,0 +1,7 @@
+parameters:
+#    aslan_page.example.class: Aslan\PageBundle\Example
+
+services:
+#    aslan_page.example:
+#        class: %aslan_page.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,159 @@
+<?php 
+namespace Aslan\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="brand_hofparkett")
+ */
+class Brand
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $name;  
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameEn;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameDe;    
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $src;    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Page", cascade={"remove"}, mappedBy="brand")
+     */    
+    protected $pages;
+    
+    public function __construct()
+    {
+    	$this->pages = new ArrayCollection();
+    }    
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param text $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return text 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add pages
+     *
+     * @param Aslan\StoreBundle\Entity\Page $pages
+     */
+    public function addPage(\Aslan\StoreBundle\Entity\Page $pages)
+    {
+        $this->pages[] = $pages;
+    }
+
+    /**
+     * Get pages
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Set src
+     *
+     * @param text $src
+     */
+    public function setSrc($src)
+    {
+        $this->src = $src;
+    }
+
+    /**
+     * Get src
+     *
+     * @return text 
+     */
+    public function getSrc()
+    {
+        return $this->src;
+    }
+
+    /**
+     * Set nameEn
+     *
+     * @param text $nameEn
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->nameEn = $nameEn;
+    }
+
+    /**
+     * Get nameEn
+     *
+     * @return text 
+     */
+    public function getNameEn()
+    {
+        return $this->nameEn;
+    }
+
+    /**
+     * Set nameDe
+     *
+     * @param text $nameDe
+     */
+    public function setNameDe($nameDe)
+    {
+        $this->nameDe = $nameDe;
+    }
+
+    /**
+     * Get nameDe
+     *
+     * @return text 
+     */
+    public function getNameDe()
+    {
+        return $this->nameDe;
+    }
+}

@@ -1,0 +1,93 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+
+<script type="text/javascript" src="{{ asset("js/ckeditor/ckeditor.js") }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.masonry.js') }}"></script> 
+<script src="http://malsup.github.com/jquery.form.js"></script>
+{% include "AslanAdminBundle:Js:jquery.simplemodal-1.4.2.js.twig" %}
+<script type="text/javascript">
+    globalId = -1;
+    function rout(href) {
+        $.get(href, {}, function(data) {
+            var options = {
+                success: showResponse,
+                clearForm: false
+            };
+            $("#pageSend").ajaxForm(options);
+        });
+    }
+    function ajaxRout() {
+        rout('{{ path('AslanAdminBundle_admin_categoryForm') }}');
+    }
+    function showResponse(responseText, statusText, xhr, $form) {
+        text = $.parseJSON(responseText);
+        $container = $('#container');
+        if (text['edit'] == 1) {
+            $('#' + text['id']).css("background-image", "url({{ asset('media/pictures/') }}" + text['src'] + ")");
+            $('#cc' + text['id']).find('h2').html(text['head']);
+        } else {
+            $container.prepend('<div class="box" style="background:url({{ asset('media/pictures/small') }}' + text['src'] + '); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + text['id'] + '"><div id="c' + text['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + text['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + text['id'] + '" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + text['head'] + '</h2></div></div>');
+        }
+        $container.masonry('reload');
+        $.modal.close();
+    }
+    function addParkett(id) {
+        globalId = -1;
+        $.get('{{ path('AslanAdminBundle_admin_categoryForm') }}', {}, function(data) {
+            $.modal(data, {maxHeight: null, minHeight: 224, onShow: function() {
+                    ajaxRout();
+                }});
+            $('#simplemodal-data').html($('.forms'));
+        });
+    }
+    function editParkett(id) {
+        id = id.slice(1, id.length);
+        globalId = id;
+        $.post('{{ path('AslanAdminBundle_admin_idcategory') }}', {"id": id}, function(data) {
+            $.get('{{ path('AslanAdminBundle_admin_categoryForm') }}', {}, function(data2) {
+                $.modal(data2, {maxHeight: null, minHeight: 224, onShow: function() {
+                        ajaxRout();
+                    }});
+                $('#simplemodal-data').html($('.forms'));
+                page = $.parseJSON(data);
+                $('.id').val(page[0][0]);
+                $('#names_name').text(page[0][1]);
+            });
+        });
+    }
+    function deleteParkett(id) {
+        idDiv = $("#" + id).parent().attr('id');
+        $("#" + idDiv).remove();
+        $container = $('#container');
+        $container.masonry('reload');
+        $.post("{{ path('AslanAdminBundle_admin_removecategory') }}", {"id": idDiv});
+    }
+    </script>
+{% endblock %}
+{% block content %}
+    <div id="container" class="form-horizontal">
+{% for item in secondmenuall %}
+            <div class="box" style="background:url({{ asset('media/pictures/small') }}{{ item.img }}); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="{{ item.id }}">
+                <div id='c{{ item.id }}' onclick="deleteParkett(id);" class="closeButton"></div>
+                <div id='c{{ item.id }}' onclick="editParkett(id);" class="editButton"></div>
+                <div id="cc{{ item.id }}" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
+                     vertical-align: middle; overflow:hidden;">
+                         <h2>{{ item.name }}</h2>
+                     </div>
+                </div>
+{% endfor %}
+                <div class="box" id="adding">
+                    <div onclick="addParkett();" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
+                         vertical-align: middle;">
+                             <h2>Добавить</h2>
+                         </div>
+                    </div>
+                </div>
+                <script>
+    var $container = $('#container');
+    $container.masonry({
+        itemSelector: '.box',
+        isAnimated: true
+    });
+                    </script>
+{% endblock %}

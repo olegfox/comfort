@@ -1,0 +1,82 @@
+<div class='forms form-actions'>
+{{ form_errors(form) }}
+		<form action="{{ path('AslanAdminBundle_admin_afishaForm') }}" id="pageSend" method="post" {{ form_enctype(form) }} >	
+			<div class="divInput" style='display:none;'>
+				{{ form_errors(form.id) }}
+				{{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
+			</div>
+			<table class="table table-bordered table-striped">
+			<tr>
+			<td>
+			<div class="divInput">
+				{{ form_label(form.name, 'Название') }}
+				{{ form_errors(form.name) }}
+				{{ form_widget(form.name, { 'attr': {'class': 'header'} }) }}
+			</div>	
+			</td>
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.img, 'Выберите изображение') }}
+				{{ form_errors(form.img) }}
+				{{ form_widget(form.img, { 'attr': {'class': 'img', 'name' : 'img'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        </tr>
+                        <tr>
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.time, 'Дата') }}
+				{{ form_errors(form.time) }}
+				{{ form_widget(form.time, { 'attr': {'class': 'date'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.color, 'Цвет') }}
+				{{ form_errors(form.color) }}
+				{{ form_widget(form.color, { 'attr': {'class': 'color'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        <td>
+                        </td> 
+                        </tr>                        
+                        <tr>
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.category, 'Категория') }}
+				{{ form_errors(form.category) }}
+				{{ form_widget(form.category, { 'attr': {'class': 'category'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        <td>
+                        </td> 
+                        </tr>                        
+                        <tr colspan="2">
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.place, 'Место') }}
+				{{ form_errors(form.place) }}
+				{{ form_widget(form.place, { 'attr': {'class': 'place'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        <td>
+                        </td>    
+                        </tr>
+                        <tr>
+                        <td colspan="4">
+				{{ form_label(form.text, 'Текст') }}
+				{{ form_errors(form.text) }}
+				{{ form_widget(form.text, { 'attr': {'class': 'ckeditor', 'name' : 'redactor_content'}, 'required' : '' }) }}
+			</td>
+                        </tr>                        
+			<tr>
+			<td colspan="4">
+			<div class="divButton">
+				<input type="submit" class="btn btn-large simplemodal-close" value="Отправить" />
+			</div>
+			</td>
+			</tr>
+			</table>
+		</form>
+		{{ form_rest(form) }}
+</div>		

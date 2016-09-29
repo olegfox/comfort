@@ -1,0 +1,325 @@
+﻿*{
+    margin: 0;
+}
+body{
+    background: #fff;
+    background-attachment: fixed;
+}
+img{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    vertical-align:bottom;
+}
+.centerLayer{
+    position: relative;
+    width: 1130px;
+    margin: 40px auto 34px auto;
+    background: #fff;
+}
+/*Logo*/
+.centerLayer .logo{
+    width: 1130px;
+    position: relative;
+    padding: 0px 0 0px 0;
+    text-align: center;
+}
+.centerLayer .logo a{
+    border: 0;
+    outline: 0;
+}
+.centerLayer .logo a img{
+    border: 0;
+    outline: 0;
+}
+.centerLayer .logo h1{
+    display: none;
+}
+/*Content*/
+.centerLayer .content{
+    position: relative;
+    width: 1077px;
+    padding: 20px 0 0px 0;
+    margin: 0 auto;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}
+.centerLayer .content-cat{
+    margin-top: -20px;
+}
+.centerLayer .content .page-header{
+    display: none;
+}
+.centerLayer .content .pagenav{
+    display: none;
+}
+.centerLayer .content .pull-right{
+    display: none;
+}
+.centerLayer .content .article-info{
+    display: none;
+}
+/*Topmenu*/
+.centerLayer .topmenu_wrap{
+    height: 42px;
+    width: 1130px;
+    position: relative;
+}
+.centerLayer .topmenu_wrap .topmenu{
+    height: 38px;
+    margin: 0 27px 0 26px;
+    width: 1077px;
+    border-bottom: solid 2px #e6e6e6;
+    border-top: solid 2px #e6e6e6;
+}
+/*Links*/
+.centerLayer .topmenu_wrap .topmenu .links{
+    position: relative;
+    height: 38px;
+    line-height: 38px;
+    list-style: none;
+    text-align: justify;
+    width: 990px;
+}
+.centerLayer .topmenu_wrap .topmenu .links li{
+    list-style: none;
+    display: inline-block;
+}
+.centerLayer .topmenu_wrap .topmenu .links li.sizer{
+    width: 100%;
+}
+.centerLayer .topmenu_wrap .topmenu .links li a:hover{
+    color: #000;
+}
+.centerLayer .topmenu_wrap .topmenu .links li a:active{
+    color: #000;
+}
+.centerLayer .topmenu_wrap .topmenu .links li a{
+    text-decoration: none;
+    color: #000;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    outline: 0;
+}
+/*Slider*/
+.centerLayer .slider{
+    width: 1077px;
+    position: relative;
+    margin: 12px auto 0 auto;
+}
+/*Lenta*/
+.centerLayer .lenta{
+    position: relative;
+    display: inline-block;
+    min-height: 260px;
+    width: 1093px;
+    margin: 36px 27px 0 26px;
+}
+.centerLayer .lenta-m{
+    margin: 13px 27px 0 0px;
+}
+.centerLayer .lenta-0{
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.centerLayer .lenta-1{
+    margin: 0px;
+}
+.centerLayer .lenta a{
+    text-decoration: none;
+}
+.centerLayer .lenta a:hover{
+    color: #000;
+}
+.centerLayer .lenta a:active{
+    color: #000;
+}
+.centerLayer .lenta .head{
+    height: 30px;
+    border-bottom: solid 2px #e6e6e6;
+    width: 1077px;
+    position: relative;
+}
+.centerLayer .lenta .head a:hover{
+    color: #000;
+}
+.centerLayer .lenta .head a:active{
+    color: #000;
+}
+.centerLayer .lenta .head a{
+    text-decoration: none;
+    color: #000;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    outline: 0;
+}
+.centerLayer .lenta .cub{
+    width: 258px;
+    margin: 16px 15px 0 0;
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+.centerLayer .lenta .cub-gallery{
+    width: 261.75px;
+    margin: 0 10px 10px 0px; 
+}
+.centerLayer .lenta .cub-gallery img{
+    width: 261.75px;
+}
+.centerLayer .lenta .cub-last{
+    margin-right: 0;
+}
+.centerLayer .lenta .cub .description{
+    color: #fff;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 12px;
+    width: 233px;
+    position: relative;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 30px;
+}
+.centerLayer .lenta .cub .date{
+    color: #fff;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 7px;
+    position: absolute;
+    text-align: left;
+    top: 11px;
+    left: 8px;
+}
+/*Baner*/
+.centerLayer .baner{
+    width: 1077px;
+    position: relative;
+    margin: 33px auto 0 auto;
+}
+/*Footer*/
+.centerLayer .footer-wrap{
+    position: relative;
+    height: 50px;
+    width: 1077px;
+    margin: 0 auto;
+    line-height: 50px;
+}
+.centerLayer .footer-wrap a:hover{
+    color: #000;
+}
+.centerLayer .footer-wrap a:active{
+    color: #000;
+}
+.centerLayer .footer-wrap a{
+    text-decoration: none;
+    color: #000;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: 0;
+}
+.centerLayer .footer-wrap .footer1{
+    position: relative;
+    float: left;
+}
+.centerLayer .footer-wrap .footer1 a{
+    margin-right: 20px;
+}
+.centerLayer .footer-wrap .footer2{
+    position: relative;
+    float: right;
+}
+/*Блок со строкой поиска*/
+.search{
+    /*    padding: 20px 0 5px 0;*/
+}
+.search input[type="text"]{
+    width: 1060px;
+    height: 30px;
+    border: solid 4px #FCDD3E;
+    font-size: 27px;
+    font-weight: normal;
+    padding: 5px;
+}
+.search button{
+    height: 50px;
+    margin-top: -1px;
+    float: right;
+    width: 108px;
+    cursor: pointer;
+}
+
+/* Fullcalendar */
+.fc-event-title a{
+    text-decoration: none;
+    color: #000;
+}
+.fc-event{
+    background-color: #FCDD3E!important;
+}
+
+/* Слайдер на странице места */
+.wrap_slider{
+    height: 460px;
+    width: 1077px;
+    position: relative;
+    margin: 0 auto;
+
+}
+.wrap_slider .description{
+    background: #b0d808;
+    float: right;
+    width: 270px;
+    height: 460px;
+}
+.wrap_slider .slider_mesta{
+    float: left;
+    width: 807px;
+    height: 460px;
+}
+.wrap_slider .description .wrap_description{
+    margin-top: 85px;
+    display: inline-block;
+    text-align: left;
+    max-width: 202px;
+}
+.wrap_slider .description{
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.wrap_slider .description .head{
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+    line-height: 35px;
+}
+.wrap_slider .description .descr{
+    margin-top: 70px;
+    line-height: 34px;
+    font-size: 13px;
+}
+.videovlente iframe{
+    height: 808px;
+}
+.videovlenteHead h1{
+    padding: 10px 0 10px 0;
+    font-family: "Arial Black", Arial;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+}

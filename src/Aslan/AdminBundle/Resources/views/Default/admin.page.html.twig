@@ -1,0 +1,260 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+		function onemenuchange(){
+			val = $('#onemenu').val();
+			$.post("{{ path('AslanAdminBundle_admin_homepage') }}", {"id": val}, function(data){window.location.reload();});
+		}
+		function opclick(){
+			$('#secondmenu option').click(function(){
+				$("#podmenu7").css({"opacity":"1"});
+				$("#podmenu2").css({"opacity":"1"});
+				$("#podmenu3").css({"opacity":"1"});
+				id = $("#secondmenu option:selected").val();
+				$.post("{{ path("AslanAdminBundle_admin_podmiddleview") }}", {"id":id}, function(data){
+					pod = $.parseJSON(data);
+					$("#podmenu").empty();
+					for (i = 0; i < pod.length; i++){
+						$("#podmenu").append("<option value='"+pod[i][0]+"'>"+pod[i][1]+"</option>");
+					}
+				});
+			});
+		}
+		function rename(){
+			$('#secondmenu option').dblclick(function(){
+				$('#maintable').fadeOut(function(){
+					$('.pageSend').fadeIn();
+				});
+				id = $('#secondmenu option:selected').val();
+				$.post('{{ path('AslanAdminBundle_admin_idpage') }}', {"id" : id}, function(data){
+					page = $.parseJSON(data); 
+					$('.id').val(page[0][0]);
+					$('.name').val(page[0][1]);
+					$('.temp').html("Главное изображение<br/><img src='{{ asset('media/pictures/') }}"+page[0][2]+"' alt='' height='50px' /><br/>");
+					$('.temp').css({"display": "block"});
+					$('.temp2').html("Второстепенные изображения<br/>");
+					for(i = 14; i < page[0].length; i++){
+						$('.temp2').html($('.temp2').html() + "<img src='{{ asset('media/pictures/') }}"+page[0][i]+"' alt='' height='50px' /><br/>");
+					}
+					$('.temp2').css({"display": "block"});
+					$('#names_description').val(page[0][3]);
+					//$("#cke_contents_names_description iframe").contents().find('.cke_show_borders').html(page[0][3]);
+					//$("#cke_contents_names_text iframe").contents().find('.cke_show_borders').html(page[0][4]);
+					$('#names_text').val(page[0][4]);
+					$('#names_wood').val(page[0][5]);
+					$('#names_country').val(page[0][6]);
+					$('#names_grade').val(page[0][7]);
+					$('#names_processing').val(page[0][8]);
+					$('#names_width').val(page[0][9]);
+					$('#names_length').val(page[0][10]);
+					$('#names_thickness').val(page[0][11]);
+					$('#names_article').val(page[0][12]);					
+					$('#names_brand option[value='+page[0][13]+']').attr({'selected':'selected'});					
+				});
+			});
+		}
+		$(function(){
+			$("#podmenu7").css({"opacity":"0"});
+			$("#podmenu2").css({"opacity":"0"});
+			$("#podmenu3").css({"opacity":"0"});
+			opclick();
+			$(".back").click(function(){
+				$('.pageSend').fadeOut(function(){
+					$('#maintable').fadeIn();
+				});
+			});
+			$('#plus').click(function(){
+				$('#maintable').fadeOut(function(){
+					$('.pageSend').fadeIn();
+					$("#names_id").val("");
+					$("#names_name").val("");
+					$(".temp").css({"display" : "none"});
+					$(".temp2").css({"display" : "none"});
+					$("#names_img").val("");
+					$("#names_description").val("");
+					$("#names_text").val("");
+					$("#names_wood").val("");
+					$("#names_country").val("");
+					$("#names_grade").val("");
+					$("#names_processing").val("");
+					$("#names_width").val("");
+					$("#names_length").val("");
+					$("#names_thickness").val("");
+					$("#names_article").val("");
+				});
+			});
+			$('#delete').click(function(){
+				$.post("{{ path('AslanAdminBundle_admin_removepage') }}", {"id":$("#secondmenu option:selected").val()}, function(data){
+						$("#secondmenu option:selected").remove();
+						$('#secondmenu option:last').attr('selected', 'selected');
+						if($('#secondmenu option').length == 0){
+							$("#podmenu7").css({"opacity":"0"});
+							$("#podmenu2").css({"opacity":"0"});
+							$("#podmenu3").css({"opacity":"0"});					
+						}
+						$("#secondmenu").focus();
+				});
+			});
+			rename();			
+		});
+		function rout(href){
+			$.get(href, {}, function(data){
+				$('.mainTable').html(data);		
+				 var options = {  
+					        success: showResponse,
+					        clearForm: false      
+					    }; 	
+				$("#pageSend").ajaxForm(options);
+			});
+		}
+		$(function(){
+			rout('{{ path('AslanAdminBundle_admin_page') }}');
+		});
+		function showResponse(responseText, statusText, xhr, $form)  {
+			pod = $.parseJSON(responseText); 
+			if($('.id').val() == ""){
+				$("#secondmenu").append("<option value='"+pod['id']+"'>"+pod['name']+"</option>");
+				$('#secondmenu option:selected').removeAttr('selected');
+				$('#secondmenu option:last').attr('selected', 'selected');
+				$("#secondmenu").focus();
+				rename();
+				opclick();
+				$('#secondmenu option:last').click();
+			}
+			else{
+				$("#secondmenu option:selected").text(pod['name']);
+				$("#secondmenu option:selected").attr({"id" : pod['id']});
+			}		
+			$(".back").click();
+		} 		
+</script>
+{% endblock %}
+{% block content %}
+<table id='maintable' border='0'>
+<tr>
+<td>
+<font color="#fff">Список паркета</font>
+</td>
+<td>
+</td>
+</tr>
+<tr rowspan="3">
+<td>
+<select id="secondmenu" multiple="multiple">
+{% for item in secondmenuall %}
+	<option value="{{ item.id }}">{{ item.name }}</option>
+{% endfor %}
+</select>
+</td>
+<td>
+	<table border="0">
+		<tr>
+			<td>
+				<input id='plus' type="button" value="+"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input id="delete" type="button" value="-"/>
+			</td>
+		</tr>
+	</table>
+</td>
+</tr>
+</table>
+<div class="pageSend" style="display:none;">
+	<div class="divForm">
+		{{ form_errors(form) }}
+		<form action="{{ path('AslanAdminBundle_admin_page') }}" id="pageSend" method="post" {{ form_enctype(form) }} >
+			<div class="divInput" style='display:none;'>
+				{{ form_errors(form.id) }}
+				{{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.name, 'Имя') }}
+				{{ form_errors(form.name) }}
+				{{ form_widget(form.name, { 'attr': {'class': 'name'} }) }}
+			</div>		
+			<div class="temp" style="display:none;">
+			</div>	
+			<div class="divInput">
+				{{ form_label(form.img, 'Выберите изображение') }}
+				{{ form_errors(form.img) }}
+				{{ form_widget(form.img, { 'attr': {'class': 'img', 'name' : 'img'}, 'required' : '' }) }}
+			</div>
+			<div class="temp2" style="display:none;">
+			</div>	
+			Выберите изображения
+			<input name="files[]" type="file" multiple="true"/>
+			<div class="divInput">
+				{{ form_label(form.description, 'Цвет') }}
+				{{ form_errors(form.description) }}
+				{{ form_widget(form.description, { 'attr': {'class': 'ckeditor'}, 'required' : '' }) }}
+			</div>			
+			<div class="divInput">
+				{{ form_label(form.text, 'Покрытие') }}
+				{{ form_errors(form.text) }}
+				{{ form_widget(form.text, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			</div>			
+			<div class="divInput">
+				{{ form_label(form.wood, 'Порода древесины') }}
+				{{ form_errors(form.wood) }}
+				{{ form_widget(form.wood, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>			
+			<div class="divInput">
+				{{ form_label(form.country, 'Страна') }}
+				{{ form_errors(form.country) }}
+				{{ form_widget(form.country, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.grade, 'Сортность') }}
+				{{ form_errors(form.grade) }}
+				{{ form_widget(form.grade, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.processing, 'Обработка') }}
+				{{ form_errors(form.processing) }}
+				{{ form_widget(form.processing, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.width, 'Ширина') }}
+				{{ form_errors(form.width) }}
+				{{ form_widget(form.width, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.length, 'Длина') }}
+				{{ form_errors(form.length) }}
+				{{ form_widget(form.length, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.thickness, 'Толщина') }}
+				{{ form_errors(form.thickness) }}
+				{{ form_widget(form.thickness, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>
+			<div class="divInput">
+				{{ form_label(form.article, 'Артикул') }}
+				{{ form_errors(form.article) }}
+				{{ form_widget(form.article, { 'attr': {'class': 'ckeditor', 'id' : 'redactor_content'}, 'required' : '' }) }}
+			</div>																							
+			<div class="divInput">
+				{{ form_label(form.brand, 'Коллекция') }}
+				{{ form_errors(form.brand) }}
+				{{ form_widget(form.brand, { 'attr': {'class': 'brand'} }) }}
+			</div>
+			<div class="divButton">
+				<input type="submit" class="btn btn-large" value="Отправить" />
+			</div>
+	<div class="divButton">
+		<input type="button" class="btn btn-danger btn-large" value="Отмена" />
+	</div>			
+		</form>
+		{{ form_rest(form) }}
+	</div>
+</div>
+{% endblock %}

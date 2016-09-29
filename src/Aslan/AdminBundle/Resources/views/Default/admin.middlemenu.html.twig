@@ -1,0 +1,181 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+<script type="text/javascript">
+		function onemenuchange(){
+			val = $('#onemenu').val();
+			$.post("{{ path('AslanAdminBundle_admin_homepage') }}", {"id": val}, function(data){window.location.reload();});
+		}
+		function opclick(){
+			$('#secondmenu option').click(function(){
+				$("#podmenu7").css({"opacity":"1"});
+				$("#podmenu2").css({"opacity":"1"});
+				$("#podmenu3").css({"opacity":"1"});
+				$("#podmenu4").css({"opacity":"1"});
+				id = $("#secondmenu option:selected").val();
+				$.post("{{ path("AslanAdminBundle_admin_podmiddleview") }}", {"id":id}, function(data){
+					pod = $.parseJSON(data);
+					$("#podmenu").empty();
+					for (i = 0; i < pod.length; i++){
+						$("#podmenu").append("<option value='"+pod[i][0]+"'>"+pod[i][1]+"</option>");
+					}
+				});
+			});
+		}
+		function rename(){
+			$('#secondmenu option').dblclick(function(){
+				$('#rename').remove();
+				$('#secondmenu').animate({"opacity":0});
+				$('body').append("<input type='text' id='rename' />");
+				$('#rename').focus();
+				$('#rename').focusout(function(){
+					$('#secondmenu option:selected').html($('#rename').val());
+					id = $('#secondmenu option:selected').val();
+					text = $('#rename').val();
+					$.post("{{ path("AslanAdminBundle_admin_renamemiddle") }}", {'text':text, 'id':id});
+					$('#rename').remove();
+					$('#secondmenu').animate({"opacity":1});
+					$('#secondmenu').focus();					
+				});
+				$('#rename').keydown(function(event){
+					if(event.which == 13){
+						$('#secondmenu option:selected').html($('#rename').val());
+						id = $('#secondmenu option:selected').val();
+						text = $('#rename').val();
+						$.post("{{ path("AslanAdminBundle_admin_renamemiddle") }}", {'text':text, 'id':id});
+						$('#rename').remove();
+						$('#secondmenu').animate({"opacity":1});
+						$('#secondmenu').focus();
+					}
+				});
+				$('#rename').val($('#secondmenu option:selected').html());
+				offset = $('#secondmenu').offset();
+				$("#rename").css({"z-index":5, "position":"fixed"});
+				$('#rename').offset({"top":offset.top, "left":offset.left});
+			});
+		}
+		$(function(){
+			$("#podmenu7").css({"opacity":"0"});
+			$("#podmenu2").css({"opacity":"0"});
+			$("#podmenu3").css({"opacity":"0"});
+			$("#podmenu4").css({"opacity":"0"});
+			opclick();
+			$('#plus').click(function(){
+				$.post("{{ path('AslanAdminBundle_admin_newmiddle') }}", {}, function(data){
+					$("#secondmenu").append("<option value='"+data+"'>Новый</option>");
+					$('#secondmenu option:selected').removeAttr('selected');
+					$('#secondmenu option:last').attr('selected', 'selected');
+					$("#secondmenu").focus();
+					rename();
+					opclick();
+					$('#secondmenu option:last').click();
+				});
+			});
+			$('#delete').click(function(){
+				$.post("{{ path('AslanAdminBundle_admin_removemiddle') }}", {"id":$("#secondmenu option:selected").val()}, function(data){
+						$("#secondmenu option:selected").remove();
+						$('#secondmenu option:last').attr('selected', 'selected');
+						if($('#secondmenu option').length == 0){
+							$("#podmenu7").css({"opacity":"0"});
+							$("#podmenu2").css({"opacity":"0"});
+							$("#podmenu3").css({"opacity":"0"});
+							$("#podmenu4").css({"opacity":"0"});						
+						}
+						$('#secondmenu option:last').click();
+						$("#secondmenu").focus();
+				});
+			});
+			$("#right").click(function(){
+				text = $("#podmenu option:selected").html();
+				id = $("#podmenu option:selected").val();
+				if(id){
+					$("#podmenu option:selected").remove();
+					$('#podmenu option:last').attr('selected', 'selected');
+					$.post("{{ path("AslanAdminBundle_admin_podmiddle2") }}", {'id':id});
+					$("#thirdmenu").append("<option value='"+id+"'>"+text+"</option>");
+				}
+			});			
+			$("#left").click(function(){
+				text = $("#thirdmenu option:selected").html();
+				id = $("#thirdmenu option:selected").val();
+				id2 = $("#secondmenu option:selected").val();
+				if(id){
+					$("#thirdmenu option:selected").remove();
+					$('#thirdmenu option:last').attr('selected', 'selected');
+					$.post("{{ path("AslanAdminBundle_admin_podmiddle") }}", {'id':id2,'id2':id});
+					$("#podmenu").append("<option value='"+id+"'>"+text+"</option>");
+				}
+			});
+			rename();			
+		});
+</script>
+{% endblock %}
+{% block content %}
+<table border='0'>
+<tr>
+<td>
+<label class="control-label">Выберите пункт меню</label>
+</td>
+<td>
+</td>
+<td id="podmenu7">
+<label class="control-label">Подпункты меню</label>
+</td>
+<td id="podmenu4">
+<label class="control-label">Неиспользованные подпункты</label>
+</td>
+</tr>
+<tr rowspan="3">
+<td>
+<select style="height:200px;" id="secondmenu" multiple="multiple">
+{% for item in secondmenuall %}
+	<option value="{{ item.id }}">{{ item.name }}</option>
+{% endfor %}
+</select>
+</td>
+<td>
+</td>
+<td id="podmenu2">
+<table>
+<tr rowspan="3">
+<td>
+<select style="height:200px;" id="podmenu" multiple="multiple">
+</select>
+</td>
+<td>
+	<table border="0">
+		<tr>
+			<td>
+				<input id="left" type="button" value="<"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input id="right" type="button" value=">"/>
+			</td>
+		</tr>
+	</table>
+</td>
+</td>
+</tr>
+</table>
+</td>
+<td id="podmenu3">
+<table>
+<tr rowspan="3">
+<td>
+<select style="height:200px;" id="thirdmenu" multiple="multiple">
+{% for item in thirdmenuall %}
+	<option value="{{ item.id }}">{{ item.name }}</option>
+{% endfor %}
+</select>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+{% include "AslanAdminBundle:Js:video.js.twig" %}
+<script type="text/javascript" src="{{ asset('js/jquery.masonry.js') }}"></script> 
+{% include "AslanAdminBundle:Js:jquery.simplemodal-1.4.2.js.twig" %}
+{% endblock %}
+{% block content %}
+<input type="button" class='btn btn-primary okButton' value="Добавить видео" onclick="showVideoAdd();" />
+<div id="container">
+{% for item  in video %}
+    <div class="box">
+      <div class="closeButton" onclick="deleteVideo({{ item.id }});"></div>
+	  {{ item.code | raw}}
+	  <br/><textarea style='width:95%;' rows="5" id="code{{ item.id }}" onchange="changeCode({{ item.id }});" onkeyup="changeCode({{ item.id }});">{{ item.code | raw}}</textarea>
+          <br/><textarea style='width:95%;' rows="5" id="head{{ item.id }}" onchange="changeHead({{ item.id }});" onkeyup="changeHead({{ item.id }});">{{ item.head | raw}}</textarea>
+    </div>
+{% endfor %}    
+</div>
+<script>
+var $container = $('#container');
+
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector : '.box'
+  });
+});
+</script>
+{% endblock %}

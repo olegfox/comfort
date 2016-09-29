@@ -1,0 +1,24 @@
+{% extends "AslanPageBundle::layout.html.twig" %}
+{% block style %}
+{{ parent() }}
+<link rel='stylesheet' type="text/css" href='{{ asset('css/gallery.css') }}'></link>
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset("js/searchVideo.js") }}"></script>
+{% endblock %}
+{% block content %}
+<div class="search"><input type="text" placeholder="Поиск по мультикам" /></div>
+{% for v in video %}
+<div class="video">    
+<div class="videovlenteHead">    
+<h1>{{ v.head }}</h1>
+</div>
+<div class="videovlente" style="position: relative;">
+<img style="width: 100%; height: auto; cursor: pointer;" src="{{ v.img }}">
+<img src="{{ asset('img/play.png') }}" style="width: 157px; position: absolute; left: 460px; top: 329px; cursor: pointer;" onclick="$(this).parent().html('{{ v.code }}')">
+</div>
+<br/>
+</div>
+{% endfor %}    
+{% endblock %}

@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	function rout(href){
+		$.get(href, {}, function(data){
+			$('.mainTable').html(data);		
+			 var options = {  
+				        success: showResponse,
+				        clearForm: true      
+				    }; 	
+			$("#emailSend").ajaxForm(options);
+		});
+	}
+	function showResponse(responseText, statusText, xhr, $form)  { 
+	    alert(responseText); 
+	} 	
+</script>

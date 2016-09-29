@@ -1,0 +1,55 @@
+<div class='forms form-actions'>
+{{ form_errors(form) }}
+		<form action="{{ path('AslanAdminBundle_admin_albom') }}" id="pageSend" method="post" {{ form_enctype(form) }} >	
+			<div class="divInput" style='display:none;'>
+				{{ form_errors(form.id) }}
+				{{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
+			</div>
+			<table class="table table-bordered table-striped">
+			<tr>
+			<td>
+			<div class="divInput">
+				{{ form_label(form.name, 'Название альбома') }}
+				{{ form_errors(form.name) }}
+				{{ form_widget(form.name, { 'attr': {'class': 'name'} }) }}
+			</div>
+                        </td>
+                        </tr>
+			<tr>
+			<td>
+			<div class="divInput">
+				{{ form_label(form.time, 'Дата создания') }}
+				{{ form_errors(form.time) }}
+				{{ form_widget(form.time, { 'attr': {'class': 'time'} }) }}
+			</div>
+                        </td>
+                        </tr>
+			<tr>
+			<td>
+			<div class="divInput">
+				{{ form_label(form.place, 'Место') }}
+				{{ form_errors(form.place) }}
+				{{ form_widget(form.place, { 'attr': {'class': 'place'} }) }}
+			</div>
+                        </td>
+                        </tr>
+                        <tr>                      
+			<td>
+			<div class="divInput">
+				{{ form_label(form.img, 'Выберите изображение') }}
+				{{ form_errors(form.img) }}
+				{{ form_widget(form.img, { 'attr': {'class': 'img', 'name' : 'img'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        </tr>
+			<tr>
+			<td colspan=5>
+			<div class="divButton">
+				<input type="submit" class="btn btn-large simplemodal-close" value="Отправить" />
+			</div>
+			</td>
+			</tr>
+			</table>
+		</form>
+		{{ form_rest(form) }}
+</div>		

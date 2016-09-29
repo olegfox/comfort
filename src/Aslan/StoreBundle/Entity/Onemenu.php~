@@ -1,0 +1,178 @@
+<?php 
+namespace Aslan\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="onemenu_hofparkett")
+ */
+class Onemenu
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameEn;    
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameDe;    
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $text;  
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $textEn;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $textDe;     
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param text $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return text 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set text
+     *
+     * @param text $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Get text
+     *
+     * @return text 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set nameEn
+     *
+     * @param text $nameEn
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->nameEn = $nameEn;
+    }
+
+    /**
+     * Get nameEn
+     *
+     * @return text 
+     */
+    public function getNameEn()
+    {
+        return $this->nameEn;
+    }
+
+    /**
+     * Set nameDe
+     *
+     * @param text $nameDe
+     */
+    public function setNameDe($nameDe)
+    {
+        $this->nameDe = $nameDe;
+    }
+
+    /**
+     * Get nameDe
+     *
+     * @return text 
+     */
+    public function getNameDe()
+    {
+        return $this->nameDe;
+    }
+
+    /**
+     * Set textEn
+     *
+     * @param text $textEn
+     */
+    public function setTextEn($textEn)
+    {
+        $this->textEn = $textEn;
+    }
+
+    /**
+     * Get textEn
+     *
+     * @return text 
+     */
+    public function getTextEn()
+    {
+        return $this->textEn;
+    }
+
+    /**
+     * Set textDe
+     *
+     * @param text $textDe
+     */
+    public function setTextDe($textDe)
+    {
+        $this->textDe = $textDe;
+    }
+
+    /**
+     * Get textDe
+     *
+     * @return text 
+     */
+    public function getTextDe()
+    {
+        return $this->textDe;
+    }
+}

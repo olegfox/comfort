@@ -1,0 +1,116 @@
+{% extends "::base.html.twig" %}
+{% block script %}
+<script>
+	function showInfo(id){
+		$.modal("<div><div class='parkettImg'></div><div class='parkettDesc'>��������<br/>����<br/>���<br/>���������<br/>������</div><div class='parkettZakaz'></div><div class='parkettUslug'></div></div>");
+		$(".parkettImg").prepend("<img class='ImgP' height='100%'>");
+		src = $("#"+id+" img").attr("src");
+		$(".ImgP").attr({"src" : src});
+	}
+</script>
+	<style type="text/css">
+	.centerLayer td{
+	width:205px;
+	height:205px;
+	padding-bottom:0px;
+	padding-right:0px;
+	
+}
+.centerLayer img{
+	position:relative;
+	border:0;
+	z-index:1;
+}
+.centerLayer table{
+	margin:35px 0px 0 0px;
+	padding-left:55px;
+}
+.podThirdMenu{
+	background:#636363;
+	width:1000px;
+	height:35px;
+	position:absolute;
+	z-index:5;
+}
+.bottomm{
+	width:230px;
+	height:33px;	
+	margin-top:-33px;
+	color:#fff;
+	line-height:33px;
+	font-size:14pt;
+	font-weight:bold;
+	text-align:center;
+	background:url({{ asset('media/img/bottom.png') }}) top no-repeat;
+	position:relative;
+	z-index:2;
+	font-family: "Trebuchet MS", sans-serif, Verdana, Arial, Helvetica;	
+}
+.bottomm:hover{
+	cursor:pointer;
+}
+#li{{ men }} a{
+	background:url({{ asset('media/img/strelka.png') }}) no-repeat;
+	background-position:20px 31px;
+	height:35px;
+}
+#li{{ men }} ul{
+  	margin:30px 0 0 0;
+ 	display:block;
+	position:absolute;
+	background:none;
+	text-align:left;
+	float:left;
+	line-height:35px;
+	height:35px;
+}
+#li{{ men }} ul li{
+  	padding:0;
+  	float:left;
+}
+#li{{ men }} ul li a{
+	background:none;
+	border:none;
+}
+#li{{ men }} ul #li{{ id }} a{
+  	font-size:16px;
+ 	font-weight: bold;
+	text-shadow: 1px 0 4px #333; 	
+}
+#li{{ men }} ul #li{{ id }} a:hover{
+  	color:#fff;	
+} 
+</style>
+<script>
+$(function(){
+	{% set j = 0 %}
+	{% for item in secondmenu %}
+				{% set j = j + 1 %}
+				{% if j != men %}
+				$('#li{{ j }}').mouseover(function(){
+					$('#ul{{ men }}').css({"display":"none"});
+				});	
+				$('#li{{ j }}').mouseout(function(){
+					$('#ul{{ men }}').css({"display":"block"});
+				});		
+				{% endif %}
+				{% endfor %}	
+}
+);
+</script>		
+{% endblock %}	
+{% block centerlayer %}
+<div class="podThirdMenu">
+</div>
+<div class="text2">
+    {% if app.session.locale == 'ru' %}
+    {{ blogs.page | raw }} 
+    {% endif %}
+    {% if app.session.locale == 'en' %}
+    {{ blogs.pageEn | raw }} 
+    {% endif %}
+    {% if app.session.locale == 'de' %}
+    {{ blogs.pageDe | raw }} 
+    {% endif %}
+</div>          
+{% endblock %}      

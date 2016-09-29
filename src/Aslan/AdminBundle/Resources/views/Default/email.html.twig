@@ -1,0 +1,44 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+{% endblock %}
+{% block content %}
+<h2>Email</h2>
+<table class="emailTable">
+	{% set i = 0 %}
+	<tr>
+		<td>
+			№
+		</td>
+		<td>
+			Email
+		</td>
+		<td>
+			Type
+		</td>
+		<td>
+		</td>
+	</tr>	
+	{% for item in email %}
+	{% set i = i +1 %}
+	<tr>
+		<td>
+			{{ i }}
+		</td>
+		<td>
+			{{ item.email }}
+		</td>
+		<td>
+			{% if item.type == 0 %}
+				photo
+			{% endif %}
+			{% if item.type == 1 %}
+				video
+			{% endif %}
+		</td>
+		<td>
+			<input type="button" value="delete" onclick="deleteEmail({{ item.id }});" />
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

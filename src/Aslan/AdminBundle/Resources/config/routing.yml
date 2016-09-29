@@ -1,0 +1,326 @@
+AslanAdminBundle_admin:
+    pattern:  /admin
+    defaults: { _controller: AslanAdminBundle:Admin:admin}
+
+#Place
+AslanAdminBundle_admin_place:
+    pattern:  /admin/place
+    defaults: { _controller: AslanAdminBundle:Place:adminPlace}
+
+AslanAdminBundle_admin_placeForm:
+    pattern:  /admin/placeForm
+    defaults: { _controller: AslanAdminBundle:Place:adminPlaceForm}
+    
+AslanAdminBundle_admin_idplace:
+    pattern:  /admin/idplace
+    defaults: { _controller: AslanAdminBundle:Place:idPlace}
+    
+AslanAdminBundle_admin_parkettImg:
+    pattern:  /admin/parkettImg
+    defaults: { _controller: AslanAdminBundle:Place:adminParkettImg}    
+
+AslanAdminBundle_admin_removeplace:
+    pattern:  /admin/removeplace
+    defaults: { _controller: AslanAdminBundle:Place:adminRemovePlace}    
+
+#Category
+AslanAdminBundle_admin_category:
+    pattern:  /admin/category
+    defaults: { _controller: AslanAdminBundle:Category:adminCategory}
+
+AslanAdminBundle_admin_categoryForm:
+    pattern:  /admin/categoryForm
+    defaults: { _controller: AslanAdminBundle:Category:adminCategoryForm}
+    
+AslanAdminBundle_admin_idcategory:
+    pattern:  /admin/idcategory
+    defaults: { _controller: AslanAdminBundle:Category:idCategory}    
+
+AslanAdminBundle_admin_removecategory:
+    pattern:  /admin/removecategory
+    defaults: { _controller: AslanAdminBundle:Category:adminRemoveCategory} 
+
+#Afisha
+AslanAdminBundle_admin_afisha:
+    pattern:  /admin/afisha
+    defaults: { _controller: AslanAdminBundle:Afisha:adminAfisha}
+
+AslanAdminBundle_admin_afishaForm:
+    pattern:  /admin/afishaForm
+    defaults: { _controller: AslanAdminBundle:Afisha:adminAfishaForm}
+    
+AslanAdminBundle_admin_idafisha:
+    pattern:  /admin/idafisha
+    defaults: { _controller: AslanAdminBundle:Afisha:idAfisha}    
+
+AslanAdminBundle_admin_removeafisha:
+    pattern:  /admin/removeafisha
+    defaults: { _controller: AslanAdminBundle:Afisha:adminRemoveAfisha} 
+    
+#Slider
+AslanAdminBundle_admin_slider:
+    pattern:  /admin/slider
+    defaults: { _controller: AslanAdminBundle:Admin:adminSlider}
+
+AslanAdminBundle_admin_slider_delete:
+    pattern:  /admin/sliderdelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminSliderDelete} 
+
+#Baner
+AslanAdminBundle_admin_baner:
+    pattern:  /admin/baner
+    defaults: { _controller: AslanAdminBundle:Admin:adminBaner}
+
+AslanAdminBundle_admin_baner_delete:
+    pattern:  /admin/banerdelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminBanerDelete}
+
+AslanAdminBundle_admin_blogs:
+    pattern:  /admin/blogs
+    defaults: { _controller: AslanAdminBundle:Admin:adminBlogs}
+
+AslanAdminBundle_admin_blogsForm:
+    pattern:  /admin/blogsForm
+    defaults: { _controller: AslanAdminBundle:Admin:adminBlogsForm}    
+    
+AslanAdminBundle_log:
+    pattern:  /log
+    defaults: { _controller: AslanAdminBundle:Admin:log}
+
+AslanAdminBundle_hameleon:
+    pattern:  /admin/hameleon
+    defaults: { _controller: AslanAdminBundle:Admin:hameleon}  
+    
+AslanAdminBundle_admin_img:
+    pattern:  /admin/img
+    defaults: { _controller: AslanAdminBundle:Admin:adminImg}
+    
+AslanAdminBundle_admin_photo_number_edit:
+    pattern:  /admin/numberEdit
+    defaults: { _controller: AslanAdminBundle:Admin:adminNumberEdit} 
+    requirements:
+        _method:  POST    
+
+AslanAdminBundle_admin_brandimg:
+    pattern:  /admin/brandimg
+    defaults: { _controller: AslanAdminBundle:Admin:adminBrandImg}
+
+AslanAdminBundle_admin_img_delete:
+    pattern:  /admin/imgdelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminImgDelete}   
+
+AslanAdminBundle_admin_img_delete2:
+    pattern:  /admin/imgdelete2
+    defaults: { _controller: AslanAdminBundle:Admin:adminImgDelete2}   
+   
+AslanAdminBundle_admin_homepage:
+    pattern:  /admin/homepage
+    defaults: { _controller: AslanAdminBundle:Admin:adminPage}
+
+AslanAdminBundle_admin_newmiddle:
+    pattern:  /admin/newmiddle
+    defaults: { _controller: AslanAdminBundle:Admin:adminNewMiddleMenu}
+
+AslanAdminBundle_admin_podmiddle:
+    pattern:  /admin/podmiddle
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodMiddleMenu}
+    
+AslanAdminBundle_admin_podmiddle2:
+    pattern:  /admin/podmiddle2
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodMiddle2Menu}    
+    
+AslanAdminBundle_admin_podthird:
+    pattern:  /admin/podthird
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodThirdMenu}
+    
+AslanAdminBundle_admin_podthird2:
+    pattern:  /admin/podthird2
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodThird2Menu}    
+
+AslanAdminBundle_admin_podthirdview:
+    pattern:  /admin/podthirdview
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodThirdMenuView}
+
+AslanAdminBundle_admin_podmiddleview:
+    pattern:  /admin/podmiddleview
+    defaults: { _controller: AslanAdminBundle:Admin:adminPodMiddleMenuView}
+
+AslanAdminBundle_admin_renamemiddle:
+    pattern:  /admin/renamemiddle
+    defaults: { _controller: AslanAdminBundle:Admin:adminRenameSecondmenu}
+
+AslanAdminBundle_admin_renamebrand:
+    pattern:  /admin/renamebrand
+    defaults: { _controller: AslanAdminBundle:Admin:adminRenameBrand}
+
+AslanAdminBundle_admin_removebrand:
+    pattern:  /admin/removebrand
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemoveBrand}
+
+AslanAdminBundle_admin_removemiddle:
+    pattern:  /admin/removemiddle
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemoveMiddleMenu}
+
+AslanAdminBundle_admin_newthird:
+    pattern:  /admin/newthird
+    defaults: { _controller: AslanAdminBundle:Admin:adminNewThirdMenu}
+
+AslanAdminBundle_admin_renamethird:
+    pattern:  /admin/renamethird
+    defaults: { _controller: AslanAdminBundle:Admin:adminRenameThirdmenu}
+
+AslanAdminBundle_admin_removethird:
+    pattern:  /admin/removethird
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemoveThirdMenu}
+
+AslanAdminBundle_admin_removealbums:
+    pattern:  /admin/removealbums
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemoveAlbums}
+
+AslanAdminBundle_admin_removeblog:
+    pattern:  /admin/removeblog
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemoveBlog}
+
+AslanAdminBundle_admin_removepageimg:
+    pattern:  /admin/removepageimg
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemovePageImg}
+
+AslanAdminBundle_admin_removepageimg2:
+    pattern:  /admin/removepageimg2
+    defaults: { _controller: AslanAdminBundle:Admin:adminRemovePageImg2}
+
+AslanAdminBundle_admin_pageimgnew:
+    pattern:  /admin/pageimgnew
+    defaults: { _controller: AslanAdminBundle:Place:adminPageImgNew}
+
+AslanAdminBundle_admin_pageimgnew2:
+    pattern:  /admin/pageimgnew2
+    defaults: { _controller: AslanAdminBundle:Admin:adminPageImgNew}
+
+AslanAdminBundle_admin_about:
+    pattern:  /admin/middlemenu
+    defaults: { _controller: AslanAdminBundle:Admin:adminMiddleMenu}
+
+AslanAdminBundle_admin_thirdmenu_change:
+    pattern:  /admin/thirdmenuchange
+    defaults: { _controller: AslanAdminBundle:Admin:adminRenameThirdmenu}
+
+AslanAdminBundle_admin_thirdmenu:
+    pattern:  /admin/thirdmenu
+    defaults: { _controller: AslanAdminBundle:Admin:adminThirdMenu}
+
+AslanAdminBundle_admin_brand:
+    pattern:  /admin/brand
+    defaults: { _controller: AslanAdminBundle:Admin:adminBrand}
+
+AslanAdminBundle_admin_brandpage:
+    pattern:  /admin/brandpage
+    defaults: { _controller: AslanAdminBundle:Admin:adminBrandPage}
+
+
+AslanAdminBundle_admin_albom:
+    pattern:  /admin/albom
+    defaults: { _controller: AslanAdminBundle:Admin:adminAlbom}
+
+AslanAdminBundle_admin_parkett:
+    pattern:  /admin/parkett
+    defaults: { _controller: AslanAdminBundle:Admin:adminParkett}
+
+AslanAdminBundle_admin_albumsImg:
+    pattern:  /admin/albumsImg
+    defaults: { _controller: AslanAdminBundle:Admin:adminAlbumsImg}
+
+
+AslanAdminBundle_admin_idpage:
+    pattern:  /admin/idpage
+    defaults: { _controller: AslanAdminBundle:Admin:idPage}
+
+AslanAdminBundle_admin_idalbums:
+    pattern:  /admin/idalbums
+    defaults: { _controller: AslanAdminBundle:Admin:idAlbums}
+
+AslanAdminBundle_admin_idblogs:
+    pattern:  /admin/idblogs
+    defaults: { _controller: AslanAdminBundle:Admin:idBlogs}
+
+AslanAdminBundle_admin_idthirdmenu:
+    pattern:  /admin/idthirdmenu
+    defaults: { _controller: AslanAdminBundle:Admin:idThirdMenu}
+
+AslanAdminBundle_admin_contacts:
+    pattern:  /admin/contacts
+    defaults: { _controller: AslanAdminBundle:Admin:adminPage, id : 3}
+
+AslanAdminBundle_admin_video:
+    pattern:  /admin/video
+    defaults: { _controller: AslanAdminBundle:Admin:adminVideo}
+
+AslanAdminBundle_admin_photo:
+    pattern:  /admin/photo
+    defaults: { _controller: AslanAdminBundle:Admin:adminPhoto}  
+
+AslanAdminBundle_admin_email:
+    pattern:  /admin/email
+    defaults: { _controller: AslanAdminBundle:Admin:adminEmail} 
+
+AslanAdminBundle_admin_email_delete:
+    pattern:  /admin/emailDelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminEmailDelete} 
+
+AslanAdminBundle_admin_changeLocale:
+    pattern:  /admin/changeLocale
+    defaults: { _controller: AslanAdminBundle:Admin:adminChangeLocale} 
+    requirements:
+        _method:  POST  
+
+AslanAdminBundle_admin_video_upload:
+    pattern:  /admin/videoUpload
+    defaults: { _controller: AslanAdminBundle:Admin:adminVideoUpload} 
+    requirements:
+        _method:  POST        
+
+AslanAdminBundle_admin_video_change_code:
+    pattern:  /admin/videoChangeCode
+    defaults: { _controller: AslanAdminBundle:Admin:adminVideoChangeCode} 
+    requirements:
+        _method:  POST   
+
+AslanAdminBundle_admin_video_delete:
+    pattern:  /admin/videoDelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminVideoDelete}     
+               
+AslanAdminBundle_admin_change_onemenu:
+    pattern:  /admin/changeonemenu
+    defaults: { _controller: AslanAdminBundle:Admin:adminChangeOneMenu}  
+    requirements:
+        _method:  POST
+        
+AslanAdminBundle_admin_photo_upload:
+    pattern:  /admin/photoUpload
+    defaults: { _controller: AslanAdminBundle:Admin:adminPhotoUpload} 
+    requirements:
+        _method:  POST 
+
+AslanAdminBundle_admin_photo_delete:
+    pattern:  /admin/photoDelete
+    defaults: { _controller: AslanAdminBundle:Admin:adminPhotoDelete} 
+    requirements:
+        _method:  POST 
+
+AslanAdminBundle_admin_cat_change:
+    pattern:  /admin/catChange
+    defaults: { _controller: AslanAdminBundle:Admin:adminCatChange} 
+    requirements:
+        _method:  POST
+
+AslanAdminBundle_admin_photo_head_edit:
+    pattern:  /admin/headEdit
+    defaults: { _controller: AslanAdminBundle:Admin:adminHeadEdit} 
+    requirements:
+        _method:  POST
+
+AslanAdminBundle_admin_photo_descr_edit:
+    pattern:  /admin/descrEdit
+    defaults: { _controller: AslanAdminBundle:Admin:adminDescrEdit} 
+    requirements:
+        _method:  POST                                               

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" lang="ru-ru"
+	dir="ltr">
+<head>
+<title>Панель входа</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% include 'AslanAdminBundle:Default:login.admin.css.twig' %}
+</head>
+<body>
+	<div class="all_form">
+		<form name="vhod" action="{{ path("AslanAdminBundle_log") }}" method="post">
+			<div class="panel_left"></div>
+
+			<div class="panel_t">
+				<div class="panel_top_left"></div>
+				<div class="panel_top"></div>
+				<div class="panel_top_right"></div>
+			</div>
+
+			<div class="vhod">
+				<img src="{{ asset("img/admin/panel_head.png") }}" width="451px"
+					height="127px"><br />
+				<table border=0 width="600px" align="center">
+					<tr>
+						<td align="center" height="43px"
+							style="background: url({{ asset("img/admin/login.png") }}) 50% no-repeat;"
+							colspan=3></td>
+					</tr>
+					<tr>
+						<td align="center" height="72px" colspan=3
+							style="background: url({{ asset("img/admin/input_text.png") }}) 50% no-repeat;">
+							<input type="text" name="login" id="login" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center" height="43px"
+							style="background: url({{ asset("img/admin/pass.png") }}) 50% no-repeat;"
+							colspan=3></td>
+					</tr>
+					<tr>
+						<td align="center" height="72px" colspan=3
+							style="background: url({{ asset("img/admin/input_text.png") }}) 50% no-repeat;">
+							<input type="password" name="password" id="pass" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center" height="43px" style="padding-top: 50px;">
+							<input type="submit" class="vhodbutton" id="vhodbutton" value=""><br />
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="panel_b">
+				<div class="panel_bottom_left"></div>
+				<div class="panel_bottom"></div>
+				<div class="panel_bottom_right"></div>
+			</div>
+
+			<div class="panel_right"></div>
+		</form>
+	</div>
+</body>
+</html>

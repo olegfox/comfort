@@ -1,0 +1,35 @@
+<div class='forms form-actions'>
+{{ form_errors(form) }}
+		<form action="{{ path('AslanAdminBundle_admin_categoryForm') }}" id="pageSend" method="post" {{ form_enctype(form) }} >	
+			<div class="divInput" style='display:none;'>
+				{{ form_errors(form.id) }}
+				{{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
+			</div>
+			<table class="table table-bordered table-striped">
+			<tr>
+			<td>
+			<div class="divInput">
+				{{ form_label(form.name, 'Название') }}
+				{{ form_errors(form.name) }}
+				{{ form_widget(form.name, { 'attr': {'class': 'header'} }) }}
+			</div>	
+			</td>
+                        <td>
+			<div class="divInput">
+				{{ form_label(form.img, 'Выберите изображение') }}
+				{{ form_errors(form.img) }}
+				{{ form_widget(form.img, { 'attr': {'class': 'img', 'name' : 'img'}, 'required' : '' }) }}
+			</div>
+			</td>
+                        </tr>
+			<tr>
+			<td colspan="4">
+			<div class="divButton">
+				<input type="submit" class="btn btn-large simplemodal-close" value="Отправить" />
+			</div>
+			</td>
+			</tr>
+			</table>
+		</form>
+		{{ form_rest(form) }}
+</div>		

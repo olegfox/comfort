@@ -1,0 +1,56 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+<script type="text/javascript" src="{{ asset("js/ckeditor/ckeditor.js") }}"></script>
+<script type="text/javascript">
+		CKEDITOR.config.height="100%";
+		text=$("#cke_contents_redactor_content iframe").contents().find('.cke_show_borders').html();
+                setInterval(function(){
+			textChange=$("#cke_contents_redactor_content iframe").contents().find('.cke_show_borders').html();
+                        if(text!=textChange){
+                            $.post("{{path('AslanAdminBundle_admin_change_onemenu')}}",{"text":textChange, "id":{{ id }}});}								
+		},1000);
+		function onemenuchange(){
+			val = $('#onemenu').val();
+			$.post("{{ path('AslanAdminBundle_admin_homepage') }}", {"id": val}, function(data){window.location.reload();});
+		}
+</script>
+{% endblock %}
+{% block content %}
+<h3>Выберите пункт меню</h3>
+<select id="onemenu" onchange="onemenuchange();">
+{% for item in onemenuall %}
+	<option value="{{ item.id }}" {% if item.id == onemenu.id %} selected {% endif %}>{{ item.name }}</option>
+{% endfor %}
+</select>
+<br/>
+<br/>
+<h4>Текcт</h4>
+<textarea id="redactor_content" class="ckeditor" name="redactor_content">
+{{ onemenu.text }}
+</textarea>
+<script type="text/javascript">
+ CKEDITOR.replace( 'redactor_content',
+				{
+					extraPlugins : 'uicolor',
+					uiColor: '#565a5c',
+					height:$(document).height()-250,
+					width:$(document).width()-400,
+					toolbar :
+					[
+					['Source','NewPage','Preview','Link'],
+					['Cut','Copy','Paste'],
+					['Undo','Redo','-','Print','Find','Replace','-','SelectAll','RemoveFormat'],
+					['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+					'/',
+					['Bold','Italic','Underline','Strike'],
+					['NumberedList','BulletedList','-','Outdent','Indent'],
+					['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+					['Image','Flash','Table','SpecialChar','PageBreak'],
+					'/',
+					['Styles','Format','Font','FontSize'],
+					['TextColor','BGColor'],
+					['Maximize', 'ShowBlocks']
+					]
+				} );                           
+</script>
+{% endblock %}

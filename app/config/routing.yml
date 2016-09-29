@@ -1,0 +1,20 @@
+AslanBackgroundBundle:
+    resource: "@AslanBackgroundBundle/Resources/config/routing.yml"
+    prefix:   /
+
+AslanAdminBundle:
+    resource: "@AslanAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+AslanPageBundle:
+    resource: "@AslanPageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+AslanStoreBundle:
+   resource: "@AslanStoreBundle/Resources/config/routing.yml"
+   prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal

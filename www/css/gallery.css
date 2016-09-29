@@ -1,0 +1,22 @@
+.lenta-0 h1{
+    display: none;
+}
+.lenta .cub{
+    width: 269px;
+}
+.lenta .cub h2{
+    display: none;
+}
+.lenta .cub .actions{
+    display: none;
+}
+.lenta .cub .article-info{
+    display: none;
+}
+.lenta-mesta .description span{
+    display: none;
+}
+.search .search_album{
+    margin-left: 25px;
+    margin-bottom: -10px;
+}

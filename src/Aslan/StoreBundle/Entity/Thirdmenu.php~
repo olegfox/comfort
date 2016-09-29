@@ -1,0 +1,205 @@
+<?php 
+namespace Aslan\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="thirdmenu_hofparkett")
+ */
+class Thirdmenu
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameEn;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $nameDe;   
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $text;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $textEn;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $textDe;    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Secondmenu", inversedBy="thirdmenus")
+     * @ORM\JoinColumn(name="secondmenu_id", referencedColumnName="id")
+     */
+    protected $secondmenu;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param text $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return text 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * Set text
+     *
+     * @param text $text
+     */
+    public function setText($text)
+    {
+    	$this->text = $text;
+    }
+    
+    /**
+     * Get text
+     *
+     * @return text
+     */
+    public function getText()
+    {
+    	return $this->text;
+    }    
+
+    /**
+     * Set secondmenu
+     *
+     * @param Aslan\StoreBundle\Entity\Secondmenu $secondmenu
+     */
+    public function setSecondmenu(\Aslan\StoreBundle\Entity\Secondmenu $secondmenu=null)
+    {
+        $this->secondmenu = $secondmenu;
+    }
+
+    /**
+     * Get secondmenu
+     *
+     * @return Aslan\StoreBundle\Entity\Secondmenu 
+     */
+    public function getSecondmenu()
+    {
+        return $this->secondmenu;
+    }   
+
+    /**
+     * Set nameEn
+     *
+     * @param text $nameEn
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->nameEn = $nameEn;
+    }
+
+    /**
+     * Get nameEn
+     *
+     * @return text 
+     */
+    public function getNameEn()
+    {
+        return $this->nameEn;
+    }
+
+    /**
+     * Set nameDe
+     *
+     * @param text $nameDe
+     */
+    public function setNameDe($nameDe)
+    {
+        $this->nameDe = $nameDe;
+    }
+
+    /**
+     * Get nameDe
+     *
+     * @return text 
+     */
+    public function getNameDe()
+    {
+        return $this->nameDe;
+    }
+
+    /**
+     * Set textEn
+     *
+     * @param text $textEn
+     */
+    public function setTextEn($textEn)
+    {
+        $this->textEn = $textEn;
+    }
+
+    /**
+     * Get textEn
+     *
+     * @return text 
+     */
+    public function getTextEn()
+    {
+        return $this->textEn;
+    }
+
+    /**
+     * Set textDe
+     *
+     * @param text $textDe
+     */
+    public function setTextDe($textDe)
+    {
+        $this->textDe = $textDe;
+    }
+
+    /**
+     * Get textDe
+     *
+     * @return text 
+     */
+    public function getTextDe()
+    {
+        return $this->textDe;
+    }
+}

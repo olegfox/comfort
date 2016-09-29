@@ -1,0 +1,14 @@
+/www/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/logs/*
+/www/media/pictures/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/build/
+/vendor/
+/bin/
+/.idea/*
+/logs/*
+/tmp/*

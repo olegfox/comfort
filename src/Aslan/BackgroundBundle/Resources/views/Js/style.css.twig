@@ -1,0 +1,5 @@
+<div class="b-bkg-slideshow">
+ {% for img in imgRand %}
+    <div class="b-bkg-slideshow-item" style="background-image: url({{ asset('media/pictures/'~img.src) }});"></div>
+ {% endfor %}
+</div>     

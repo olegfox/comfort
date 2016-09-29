@@ -1,0 +1,35 @@
+<script type="text/javascript">
+function showVideoAdd(){
+	/*$.modal("<div><p>Choose type video</p><form action='/admin/videoUpload' method='post' enctype='multipart/form-data'>" +
+			"<select name='type'>" +
+			"<option value='0'>Youtube</option>" +
+			"<option value='1'>Vimeo</option>" +
+			"</select>" +
+			"<br/>Code<br/><textarea rows='10' name='code'></textarea><br/><input type='submit' value='Add' /></form></div>");	*/
+	$.modal("<div><form action='{{ path("AslanAdminBundle_admin_video_upload") }}' method='post' enctype='multipart/form-data'>" +
+			"<div style='display:none;'><p>Choose type video</p>" +
+			"<select name='type'>" +
+			"<option value='0'>Youtube</option>" +
+			"<option value='1'>Vimeo</option>" +
+			"</select></div>" +
+			"<table><tr><td>Вставьте код видео<br/><textarea rows='10' name='code'></textarea></td><td>Заголовок видео<br/><textarea rows='10' name='head'></textarea></td></tr><tr><td colspan='3'><input type='submit' value='Добавить' class='btn btn-primary okButton' /></td></tr></form></div>", {onShow: function(){
+                            $('.simplemodal-container').css({'height' : 'auto'});
+                        }});	
+}
+function deleteVideo(id){
+	$.post("{{ path("AslanAdminBundle_admin_video_delete") }}", {"id":id}, function(data){window.location.reload();});
+}
+
+function changeCode(id){
+	code = $("#code"+id).val();
+	$.post("{{ path("AslanAdminBundle_admin_video_change_code") }}", {"id":id, "code":code, 'type' : 'code'});
+}
+function changeHead(id){
+	code = $("#head"+id).val();
+	$.post("{{ path("AslanAdminBundle_admin_video_change_code") }}", {"id":id, "code":code, "type" : 'head'});
+}
+function changeDescr(id){
+	code = $("#descr"+id).val();
+	$.post("{{ path("AslanAdminBundle_admin_video_change_code") }}", {"id":id, "code":code, "type" : 'descr'});
+}
+</script>

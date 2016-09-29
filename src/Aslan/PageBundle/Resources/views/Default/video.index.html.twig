@@ -1,0 +1,61 @@
+{% extends "::base.html.twig" %}
+{% block script %}
+<script>
+                        
+    var $container = $('#container');
+    $container.imagesLoaded( function(){
+        $container.masonry({
+            itemSelector : '.box',
+            isResizable : true,
+            columnWidth: function( containerWidth ) {
+                return containerWidth / 3;
+            }
+        });
+    });
+</script>  
+<style type="text/css">
+        .text{
+            padding:30px 20px 10px 10px;
+        }
+        #container{
+            margin: 30px 0px 30px 32px;
+        }
+        #simplemodal-container {
+            background: #fff;
+            text-align:left;
+            width:890px;
+        }
+        .showAll{
+            padding:30px 40px 40px 40px;
+        }
+        .blogTitle{
+            font-size: 21px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            margin-left: -1px;
+            font-family: Arial;
+            text-decoration: none;
+            color:#888;
+        }
+        #simplemodal-container p{
+            margin:10px 0 0 0;
+        }
+        .box{
+            border:gray solid 1px;
+        }
+</style>
+{% endblock %}
+{% block text %}
+{% if video is defined %}
+<div id="container">
+{% set i = 0 %}
+{% for item  in video %} 
+     <div class="box" id="box{{ i }}" onclick='showInfoVideo({{ item.id }}, {{ i }});'>
+        <img src="{{ image('media/pictures/' ~ item.img).zoomCrop(230, 172) }}" width="100%" height="auto" alt="" />
+        <p class="description" style="float:left;">{{ item.head }}</p>
+    </div>  
+    {% set i = i + 1 %}
+{% endfor %}    
+</div>
+{% endif %}
+{% endblock %}

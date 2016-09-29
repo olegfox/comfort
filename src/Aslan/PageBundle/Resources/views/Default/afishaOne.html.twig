@@ -1,0 +1,15 @@
+{% for af in afisha %}   
+<div class="cub {% if loop.index == 4 %}cub-last{% endif %}" id="cub{{ loop.index0 }}">
+<h2>
+    <a href="#">{{ af.name|raw }}</a>
+</h2>
+<a href="{{ path('AslanPageBundle_afisha_slug', { "slug" : af.slug }) }}">    
+    <img src="{{ image('media/pictures/'~af.img).zoomCrop(257, 172) }}" alt="{{ asset('media/pictures/'~af.img) }}" />
+    <div class="description">
+            {{ af.date|date("d")~' '~months[af.date|date("m")] }}
+            <br/>
+            {{ af.name|raw }}
+        </div>
+    </a>
+</div>   
+{% endfor %}

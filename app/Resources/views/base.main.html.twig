@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru"> 
+{% block ie %}
+{% endblock %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>
+{% block title %}
+{% endblock %}
+</title>
+<script type="text/javascript" src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+{% block script %}
+{% endblock %}
+<script src="{{ asset('js/jquery.videobackground.js') }}"></script>
+<script>
+			$(document).ready(function() {
+				$('dl').toggle();
+				$('h2').bind('click', function(event) {
+					event.preventDefault();
+					$(this).next('dl').slideToggle(500, function() {
+						$('.video-background').videobackground('resize');
+					});
+				});
+				$('body').prepend('<div class="video-background"></div>');
+				$('.video-background').videobackground({
+					videoSource: [['{{ asset('video/video.mov') }}', 'video/mp4'], ['{{ asset('video/video.ogg') }}', 'video/ogg'], ['{{ asset('video/video.mp4') }}', 'video/mp4']], 
+					controlPosition: '#main',
+					autoplay:true,
+					resizeTo:"document",
+					loop:"true",
+					poster: '{{ asset('media/img/bg.gif') }}'
+				});
+			});
+</script>
+{% block style %}
+{% endblock %}		
+{% include 'AslanPageBundle:Default:style.new.css.twig' %}
+{% include 'AslanPageBundle:Js:script.js.twig' %}
+</head>
+<body>
+<table border="0" cellspacing="0" cellpadding="10" height="100%" width="100%" class="mainTable">
+  <tr height="70">
+    <td colspan="3">
+    
+<div class="cl0"> 
+
+<a href="{{ path('AslanPageBundle_home') }}" onclick="rout(href); return false;" id="first" >ART.ASLANAHMADOV.COM</a>
+
+<a href="{{ path('AslanPageBundle_contacts') }}" onclick="rout(href); return false;" id="last" >{{ 'CONTACTS' | trans }}</a>
+
+<a href="{{ path('AslanPageBundle_about') }}" onclick="rout(href); return false;">{{ 'ABOUT' | trans }}</a>
+
+<a href="{{ path('AslanPageBundle_video') }}" onclick="rout(href); return false;">{{ 'VIDEO' | trans }}</a>
+
+<a href="{{ path('AslanPageBundle_photo') }}" onclick="rout(href); return false;">{{ 'PHOTO' | trans }}</a>
+
+
+
+</div>    
+    
+        
+    </td>
+
+  </tr>
+  <tr height="100%">
+    <td >&nbsp;</td>
+    <td> &nbsp;  </td>
+    <td >&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" align="right" height="50">
+<a href="/en" class="om">English version</a>    
+<a href="http://olegmitin.ru/" target="_blank" class="om">Designed by Oleg Mitin</a>      
+ <a href="/ru" class="om2">Russian version</a>    
+    
+    
+    </td>
+
+  </tr>
+</table>
+
+</body>
+</html>

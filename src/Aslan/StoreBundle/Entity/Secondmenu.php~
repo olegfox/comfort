@@ -1,0 +1,86 @@
+<?php 
+namespace Aslan\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="secondmenu_hofparkett")
+ */
+class Secondmenu
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Thirdmenu", cascade={"remove"},  mappedBy="secondmenu")
+     */
+    protected $thirdmenus;
+    
+    public function __construct()
+    {
+    	$this->thirdmenus = new ArrayCollection();
+    }
+    
+    
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param text $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return text 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add thirdmenus
+     *
+     * @param Aslan\StoreBundle\Entity\Thirdmenu $thirdmenus
+     */
+    public function addThirdmenu(\Aslan\StoreBundle\Entity\Thirdmenu $thirdmenus)
+    {
+        $this->thirdmenus[] = $thirdmenus;
+    }
+
+    /**
+     * Get thirdmenus
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getThirdmenus()
+    {
+        return $this->thirdmenus;
+    }
+}

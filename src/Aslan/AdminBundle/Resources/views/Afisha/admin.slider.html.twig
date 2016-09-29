@@ -1,0 +1,93 @@
+{% extends "::admin.base.html.twig" %}
+{% block script %}
+<script type="text/javascript" src="{{ asset('js/jquery.masonry.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('js/jquery.animate-shadow.js') }}"></script>
+{% include "AslanAdminBundle:Js:jquery.simplemodal-1.4.2.js.twig" %}
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+function rout(href){
+	$.get(href, {}, function(data){
+		$('.mainTable').html(data);		
+		 var options = {  
+			        success: showResponse,
+			        clearForm: false      
+			    }; 	
+		$("#pageSend").ajaxForm(options);
+	});
+}
+$(function(){
+	rout('{{ path('AslanAdminBundle_admin_slider') }}');
+});
+function showResponse(responseText, statusText, xhr, $form)  {
+	window.location.reload();
+	//$("#mainimg").attr({"src": "{{ asset("media/pictures/") }}"+responseText}); 	
+} 	
+function deleteImgDelete(id){
+	$.post('{{ path("AslanAdminBundle_admin_img_delete") }}', {'id':id}, function(data){window.location.reload();});
+}
+function deleteImg(id){
+	$.modal("<div class='form-actions'><label class='control-label'>Вы уверены что хотите удалить изображение?</label><input type='button' class='btn btn-primary' onclick='deleteImgDelete("+id+");' value='Да'/><input type='button' value='Нет' class='simplemodal-close btn back'/></div>");
+	$("#simplemodal-container").animate({boxShadow: '0 0 30px #000'},500);
+}
+function showBoxImg(id, href){
+	documentHeight = $(document).height()-200;
+	$("body").prepend("<img class='temp' style='display:none;' src='"+href+"' alt='' />");
+	tempHeight = $(".temp").height();
+	tempWidth = $(".temp").width();	
+	tempWidth = documentHeight*(tempWidth/tempHeight);
+	$(".temp").remove();
+	$.modal("<div><p>№</p><input onchange='updateNumber(value, "+id+")' onkeyup='updateNumber(value, "+id+")' class='number' type='text' /></div><div><p>Url</p><input onchange='updateHead(value, "+id+")' onkeyup='updateHead(value, "+id+")' class='head' type='text' /></div>");
+	head=$('#box'+id+' h4').html();
+                    number=$('#box'+id+' h5').html();
+	$('.head').val(head);
+                    $('.number').val(number);
+	$("#simplemodal-container").animate({boxShadow: '0 0 30px #000'},500);
+}
+function updateHead(val, id){
+	$('#box'+id+' h4').html(val);
+	$.post('{{ path("AslanAdminBundle_admin_photo_head_edit") }}', {'id':id, 'val':val});
+}
+function updateNumber(val, id){
+	$('#box'+id+' h5').html(val);
+	$.post('{{ path("AslanAdminBundle_admin_photo_number_edit") }}', {'id':id, 'val':val});
+}
+</script>
+{% endblock %}
+{% block content %}
+<div id="container" class="form-horizontal">
+{% for item  in img %}
+     <div class="box" id="box{{ item.id }}">
+      <div class="closeButton" onclick="deleteImg({{ item.id }});"></div>
+      <h5>{{ item.priority }}</h5>
+      <a href="#" onclick="showBoxImg({{ item.id }},'{{ asset('media/pictures/') }}{{ item.src }}'); return false;"><img src="{{ asset('media/pictures/') }}{{ item.src }}" width="250px" alt="" /></a>
+      <a href="{{ item.href }}" target="_blank" ><h4>{{ item.href }}</h4></a>
+    </div>   
+{% endfor %}    
+</div>
+<script>
+var $container = $('#container');
+
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector : '.box',
+    isAnimated: true
+  });
+$container.animate({"opacity":1});
+});
+</script>
+{{ form_errors(form) }}
+		<form action="{{ path('AslanAdminBundle_admin_slider') }}" id="pageSend" method="post" {{ form_enctype(form) }} >
+			<div class="form-horizontal well">
+				{{ form_label(form.src, 'Выберите изображение') }}
+				{{ form_errors(form.src) }}
+				{{ form_widget(form.src, { 'attr': {'class': 'img', 'name' : 'src'}, 'required' : '' }) }}
+				{{ form_label(form.href, 'Введите url') }}
+				{{ form_errors(form.href) }}
+				{{ form_widget(form.href, { 'attr': {'class': 'href', 'name' : 'href'}, 'required' : '' }) }}			
+				<br/>
+				<br/>
+				<input type="submit" class="btn btn-primary okButton" value="Загрузить" />
+			</div>			
+		</form>
+		{{ form_rest(form) }}
+{% endblock %}

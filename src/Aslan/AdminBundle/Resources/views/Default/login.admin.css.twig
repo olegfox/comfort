@@ -1,0 +1,329 @@
+<style type="text/css">
+html,body {
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+h2 {
+	color: #565a5c;
+}
+
+.capcha {
+	background: url(../capcha.php) no-repeat;
+	margin: 0 auto;
+	width: 150px;
+	height: 50px;
+}
+
+.ok_button {
+	background: url({{ asset('img/admin/ok.png') }}) no-repeat;
+	width: 143px;
+	height: 57px;
+	border: none;
+}
+
+.ok_button:hover {
+	cursor: pointer;
+}
+
+.vhodbutton {
+	background: url({{ asset('img/admin/button_start.png') }}) no-repeat;
+	width: 257px;
+	height: 85px;
+	border: none;
+}
+
+.vhodbutton:hover {
+	cursor: pointer;
+}
+
+#login,#pass {
+	border: none;
+	background-color: white;
+	width: 420px;
+	height: 50px;
+	font-family: Arial;
+	font-size: 20pt;
+}
+
+.all_form { 
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	left: 50%;
+	top: 30%;
+	margin-left: -400px;
+	margin-top: -200px;
+}
+
+.dobobjavl {
+	background: silver url('.v/images/dob.jpg');
+}
+
+.deleteobjavl {
+	background: silver url('{{ asset('img/admin/del.jpg') }}');
+}
+
+.nedobobjavl tr {
+	background: silver;
+}
+
+.zagol {
+	text-align: center;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.headmenuverh {
+	font-size: 8pt;
+	font-style: Arial;
+}
+
+.all { 
+	width: 100%;
+	text-align: left;
+	margin: -10px -8px 0 -8px;
+}
+
+.object {
+	color: rgb(181, 55, 56);
+	font-size: 8pt;
+	font-family: Arial;
+	font-weight: bold;
+}
+
+.logotip {
+	font-size: 350%;
+	font-family: arial;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: none;
+}
+
+.mainmenu {
+	color: rgb(98, 178, 254);
+	font-weight: bold;
+	font-family: Arial;
+}
+
+.mainmenu a {
+	color: rgb(98, 178, 254);
+	text-decoration: none;
+	font-size: 12pt;
+}
+
+.header {
+	background: url({{ asset('img/admin/fon_topmenu.png') }}) repeat-x;
+	height: 75px;
+	width: 100%;
+}
+
+.button_menu {
+	background: url({{ asset('img/admin/button_topmenu.png') }}) 10px 10px no-repeat;
+	width: 125px;
+	height: 50px;
+	position: absolute;
+	z-index: 3000;
+}
+
+.button_menu:hover {
+	cursor: pointer;
+}
+
+.text {
+	width: 350px;
+	height: 108px;
+	background: url({{ asset('img/admin/text.png') }}) top left no-repeat;
+}
+
+#prosmo {
+	background: rgb(224, 239, 254);
+}
+
+a.prosmo {
+	text-decoration: none;
+	color: rgb(98, 178, 254);;
+}
+
+.vhod {
+	position: absolute;
+	text-align: center;
+	font-family: arial;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: none;
+	background: url({{ asset('img/admin/panel_fon.png') }}) repeat;
+	width: 700px;
+	margin-top: 40px;
+	margin-left: 50px;
+}
+
+.panel_t {
+	position: absolute;
+	width: 800px;
+	height: 172px;
+}
+
+.panel_top_left {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_top_left.png') }}) no-repeat;
+	width: 86px;
+	height: 86px;
+}
+
+.panel_top_right {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_top_right.png') }}) no-repeat;
+	width: 86px;
+	height: 86px;
+	margin-left: 700px;
+}
+
+.panel_top {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_top.png') }}) repeat-x;
+	width: 620px;
+	height: 40px;
+	left: 86px;
+}
+
+.panel_b {
+	position: absolute;
+	width: 800px;
+	height: 172px;
+	margin-top: 545px;
+}
+
+.panel_bottom_left {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_bottom_left.png') }}) no-repeat;
+	width: 86px;
+	height: 86px;
+}
+
+.panel_bottom_right {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_bottom_right.png') }}) no-repeat;
+	width: 86px;
+	height: 86px;
+	margin-left: 700px;
+}
+
+.panel_bottom {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_bottom.png') }}) repeat-x;
+	width: 620px;
+	height: 86px;
+	left: 86px;
+}
+
+.panel_right {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_right.png') }}) repeat-y;
+	width: 86px;
+	height: 460px;
+	margin-top: 86px;
+	margin-left: 697px;
+}
+
+.panel_left {
+	position: absolute;
+	background: url({{ asset('img/admin/panel_left.png') }}) repeat-y;
+	width: 86px;
+	height: 460px;
+	margin-top: 86px;
+	margin-left: 3px;
+}
+
+.page {
+	padding: 15px;
+	font-size: 15px;
+	word-wrap: break-word;
+	background: white;
+}
+
+.page_head {
+	font-weight: bolder;
+}
+
+.content {
+	width: 100%;
+	float: left;
+	background: white;
+	overflow: auto;
+}
+
+div.nomargin { /* nomargin ����� */
+	margin-right: 0px;
+}
+
+.pic {
+	float: left;
+	width: 280px;
+	height: 100px;
+	border: solid 0px;
+	margin: 10px 0 20px 10px;
+}
+
+.pic a {
+	display: block;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul li {
+	position: relative;
+	width: 212px;
+	z-index: 99999;
+	background: #565a5c;
+}
+
+li ul {
+	position: absolute;
+	left: 212px;
+	top: 0;
+	display: none;
+}
+
+.menu-h-b {
+	border-left: white solid 1px;
+}
+
+ul li a.lemenu {
+	font-size: 8pt;
+	font-family: Arial Black;
+	text-align: left;
+	display: block;
+	text-decoration: none;
+	color: white;
+	padding: 15px;
+}
+
+a.lemenu: {
+	background: #565a5c;
+}
+
+li:hover ul {
+	display: block;
+	color: #565a5c;
+	word-wrap: break-word;
+}
+
+.menu-h-d li {
+	display: none;
+}
+
+.menu-h-b:hover .menu-h-d li {
+	display: block;
+	word-wrap: break-word;
+}
+
+a.lemenu:hover {
+	background: white;
+	color: #565a5c;
+}
+</style>

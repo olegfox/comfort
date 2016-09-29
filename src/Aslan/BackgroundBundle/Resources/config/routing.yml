@@ -1,0 +1,9 @@
+AslanBackgroundBundle_background:
+    pattern:  /admin/background
+    defaults: { _controller: AslanBackgroundBundle:Default:index }
+AslanBackgroundBundle_backgroundnew:
+    pattern:  /admin/backgroundnew
+    defaults: { _controller: AslanBackgroundBundle:Default:adminPageImgNew}
+AslanBackgroundBundle_admin_removepageimg:
+    pattern:  /admin/background/removepageimg
+    defaults: { _controller: AslanBackgroundBundle:Default:adminRemovePageImg}    

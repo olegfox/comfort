@@ -1,0 +1,74 @@
+{% extends "AslanPageBundle::layout.html.twig" %}
+{% block style %}
+{{ parent() }}
+<link rel='stylesheet' type="text/css" href='{{ asset('css/gallery.css') }}'></link>
+<link rel='stylesheet' type="text/css" href='{{ asset('css/flexslider.css') }}'></link>
+<link rel='stylesheet' type="text/css" href='{{ asset('css/flexslider2.css') }}'></link>
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset("js/jquery.flexslider-min.js") }}"></script>
+<script type="text/javascript" src="{{ asset("js/flexslider2.js") }}"></script>
+{% endblock %}
+{% block content %}
+    <div class="wrap_slider">
+        <div class="slider_mesta">
+            <div class="flexslider">
+                <ul class="slides">
+                {% for item in place.pageimgs %}  
+                        <li>
+                            <img src="{{ image('media/pictures/'~item.img).zoomCrop(807, 460) }}" />
+                        </li>
+                {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="description">
+                <div class="wrap_description">
+                    <div class="head">{{ place.head }}</div>
+                    <div class="descr">
+                    {{ place.name }}<br/>
+                    {{ place.phone }}
+                        </div>
+                    </div>
+                </div>
+            </div> 
+{% if place.afisha|length > 0 %}
+<div class="lenta lenta-m">
+    <div class="head">
+        <a href="{{ path('AslanPageBundle_afisha') }}">афиша</a>
+    </div>
+    {% for af in place.afisha %}
+    <div class="cub {% if loop.index == 4 %}cub-last{% endif %}">
+        <a href="{{ path('AslanPageBundle_afisha_slug', { "slug" : af.slug }) }}">
+            <img src="{{ image('media/pictures/'~af.img).zoomCrop(257, 172) }}" alt="{{ asset('media/pictures/'~af.img) }}" />
+            <div class="description">
+                {{ af.date|date("d")~' '~months[af.date|date("m")] }}
+                <br/>
+                {{ af.name|raw }}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if place.albums|length > 0 %}
+<div class="lenta lenta-m">
+    <div class="head">
+        <a href="{{ path("AslanPageBundle_albums") }}">ФОТООТЧЕТЫ</a>
+    </div>
+    {% for album in place.albums|slice(0,4) %}
+    <div class="cub {% if loop.index == 4 %}cub-last{% endif %}">
+        <a href="{{ path('AslanPageBundle_album', { "name" : album.slug }) }}">
+            <img src="{{ image('media/pictures/'~album.src).zoomCrop(257, 172) }}" alt="{{ asset('media/pictures/'~album.src) }}" />
+            <div class="description">
+                {{ album.time|date("d")~' '~months[album.time|date("m")] }}
+                <br/>
+                {{ album.name|raw }}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

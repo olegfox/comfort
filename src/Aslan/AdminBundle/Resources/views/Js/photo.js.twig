@@ -1,0 +1,44 @@
+<script type="text/javascript">
+function plusBox(){
+	$.modal("<div><p>Choose files</p><form action='{{ path("AslanAdminBundle_admin_photo_upload") }}' name='photo' method='post' enctype='multipart/form-data'><input type='file' name='image[]' multiple='true' /><input type='submit' value='Upload' /></form></div>");	
+	$('body').prepend("<div class='fade'></div>");
+	$(".fade").fadeIn("slow");
+}
+function deleteImg(id){
+	$.modal("<div><p>Are you sure you want to delete the picture?</p><input type='button' onclick='deleteImgDelete("+id+");' value='Yes'/><input type='button' value='No' class='simplemodal-close'/></div>");
+	$('body').prepend("<div class='fade'></div>");
+	$(".fade").fadeIn("slow");
+	$("#simplemodal-container").animate({boxShadow: '0 0 30px #000'},500);
+}
+function deleteImgDelete(id){
+	$.post('{{ path("AslanAdminBundle_admin_photo_delete") }}', {'id':id}, function(data){window.location.reload();});
+}
+function editNameCat(id){
+	val = document.getElementById("cat"+id).value;
+	$.post("{{ path("AslanAdminBundle_admin_cat_change") }}", {"id":id, "val":val});
+}
+function showBoxImg(id, href){
+	documentHeight = $(document).height()-200;
+	$("body").prepend("<img class='temp' style='display:none;' src='"+href+"' alt='' />");
+	tempHeight = $(".temp").height();
+	tempWidth = $(".temp").width();	
+	tempWidth = documentHeight*(tempWidth/tempHeight);
+	$(".temp").remove();
+	$.modal("<div><img style='border:0;' src='"+href+"' alt='"+href+"' height='"+documentHeight+"px' width='"+tempWidth+"px' /><p>Заголовок</p><input onchange='updateHead(value, "+id+")' onkeyup='updateHead(value, "+id+")' class='head' type='text' /><p>Описание</p><textarea onchange='updateDescr(value, "+id+")' onkeyup='updateDescr(value, "+id+")' class='descr' style='width:95%;'></textarea></div>");
+	head=$('#box'+id+' h2').html();
+	descr=$('#box'+id+' h3').html();
+	$('.head').val(head);
+	$('.descr').val(descr);
+	$('body').prepend("<div class='fade'></div>");
+	$(".fade").fadeIn("slow");
+	$("#simplemodal-container").animate({boxShadow: '0 0 30px #000'},500);
+}
+
+function updateHead(val, id){
+	$.post('{{ path("AslanAdminBundle_admin_photo_head_edit") }}', {'id':id, 'val':val});
+}
+
+function updateDescr(val, id){
+	$.post('{{ path("AslanAdminBundle_admin_photo_descr_edit") }}', {'id':id, 'val':val});
+}
+</script>

@@ -1,0 +1,5 @@
+<script type="text/javascript">
+	function deleteEmail(id){
+		$.post("{{ path('AslanAdminBundle_admin_email_delete') }}",{"id": id}, function(data){window.location.reload();});
+	}
+</script>

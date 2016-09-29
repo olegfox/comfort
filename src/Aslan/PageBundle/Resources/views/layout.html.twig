@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+{% block style %}
+{{ parent() }}
+{% endblock %}
+{% block content %}
+{{ parent() }}
+{% endblock %}
+{% block lenta %}
+{{ parent() }}
+{% endblock %}
+{% block baner %}
+{{ parent() }}
+{% for b in baner %}
+<a href="{{ b.href }}"><img src="{{ asset('media/pictures/'~b.src) }}" alt="{{ asset('media/pictures/'~b.src) }}" /></a>
+{% endfor %}
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="{{ asset("js/jquery-1.7.2.min.js") }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+{{ parent() }}
+{% endblock %}
