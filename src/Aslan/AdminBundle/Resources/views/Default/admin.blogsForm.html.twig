@@ -1,35 +1,71 @@
 <div class='forms form-actions'>
-{{ form_errors(form) }}
-		<form action="{{ path('AslanAdminBundle_admin_placeForm') }}" id="pageSend" method="post" {{ form_enctype(form) }} >	
-			<div class="divInput" style='display:none;'>
-				{{ form_errors(form.id) }}
-				{{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
-			</div>
-			<table class="table table-bordered table-striped">
-			<tr>
-			<td>
-			<div class="divInput">
-				{{ form_label(form.name, 'Название') }}
-				{{ form_errors(form.name) }}
-				{{ form_widget(form.name, { 'attr': {'class': 'header'} }) }}
-			</div>	
-			</td>
-                        </tr>
-                        <tr>
-                        <td colspan="4">
-				{{ form_label(form.text, 'Текст') }}
-				{{ form_errors(form.text) }}
-				{{ form_widget(form.text, { 'attr': {'class': 'ckeditor', 'name' : 'redactor_content'}, 'required' : '' }) }}
-			</td>
-                        </tr>
-			<tr>
-			<td colspan="4">
-			<div class="divButton">
-				<input type="submit" class="btn btn-large simplemodal-close" value="Отправить" />
-			</div>
-			</td>
-			</tr>
-			</table>
-		</form>
-		{{ form_rest(form) }}
+    {{ form_errors(form) }}
+    <form action="{{ path('AslanAdminBundle_admin_placeForm') }}" id="pageSend" method="post" {{ form_enctype(form) }} >
+        <div class="divInput" style='display:none;'>
+            {{ form_errors(form.id) }}
+            {{ form_widget(form.id, { 'attr': {'class': 'id'}, 'required' : '' }) }}
+        </div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>
+                    <div class="divInput">
+                        {{ form_label(form.parent, 'Родитель') }}
+                        {{ form_errors(form.parent) }}
+                        {{ form_widget(form.parent) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="divInput">
+                        {{ form_label(form.meta_title, 'Мета-заголовок') }}
+                        {{ form_errors(form.meta_title) }}
+                        {{ form_widget(form.meta_title) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="divInput">
+                        {{ form_label(form.meta_description, 'Мета-описание') }}
+                        {{ form_errors(form.meta_description) }}
+                        {{ form_widget(form.meta_description) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="divInput">
+                        {{ form_label(form.meta_keywords, 'Ключевые слова') }}
+                        {{ form_errors(form.meta_keywords) }}
+                        {{ form_widget(form.meta_keywords) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="divInput">
+                        {{ form_label(form.head, 'Название') }}
+                        {{ form_errors(form.head) }}
+                        {{ form_widget(form.head) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    {{ form_label(form.page, 'Текст') }}
+                    {{ form_errors(form.page) }}
+                    {{ form_widget(form.page, { 'attr': {'class': 'ckeditor', 'name' : 'redactor_content'}, 'required' : '' }) }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="divButton">
+                        <input type="submit" class="btn btn-large" value="Отправить"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    {{ form_rest(form) }}
 </div>		

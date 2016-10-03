@@ -1,175 +1,232 @@
 {% extends "::admin.base.html.twig" %}
+{% block style %}
+{{ parent() }}
+    <style type="text/css">
+        #simplemodal-container {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
+{% endblock %}
 {% block script %}
 
-<script type="text/javascript" src="{{ asset("js/ckeditor/ckeditor.js") }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.masonry.js') }}"></script> 
-<script src="http://malsup.github.com/jquery.form.js"></script>
-{% include "AslanAdminBundle:Js:jquery.simplemodal-1.4.2.js.twig" %}
-<script type="text/javascript">
-    globalId = -1;
-    function reloadCKEDITOR() {
-        for (var instanceName in CKEDITOR.instances)
-            CKEDITOR.remove(CKEDITOR.instances[instanceName]);
-        CKEDITOR.replace('names[text]');
-    }
-    function rout(href) {
-        $.get(href, {}, function(data) {
-            var options = {
-                success: showResponse,
-                clearForm: false
-            };
-            $("#pageSend").ajaxForm(options);
-        });
-    }
-    function routEdit(href) {
-        $.get(href, {}, function(data) {
-            var options = {
-                success: showResponseEdit,
-                clearForm: false
-            };
-            $("#pageSend").ajaxForm(options);
-        });
-    }
-    function rout2(href) {
-        $.get(href, {}, function(data) {
-            var options = {
-                success: showResponse2,
-                clearForm: false
-            };
-            $("#pageImg").ajaxForm(options);
-        });
-    }
-    function ajaxRout() {
-        rout('{{ path('AslanAdminBundle_admin_placeForm') }}');
-    }
-    function ajaxRoutEdit() {
-        routEdit('{{ path('AslanAdminBundle_admin_placeForm') }}');
-    }
-    function ajaxRout2() {
-        rout2('{{ path('AslanAdminBundle_admin_pageimgnew') }}');
-    }
-    function showResponse(responseText, statusText, xhr, $form) {
-        text = $.parseJSON(responseText);
-        $container = $('#container');
-        $container.prepend('<div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + text['id'] + '"><div id="c' + text['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + text['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + text['id'] + '" onclick="parkettImg(id);" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + text['head'] + '</h2></div></div>');
-        $container.masonry('reload');
-        $.modal.close();
-    }
-    function showResponseEdit(responseText, statusText, xhr, $form) {
-        text = $.parseJSON(responseText);
-        $("#cc"+text['id']).find("h2").text(text['head']);
-        $.modal.close();
-    }
-    function showResponse2(responseText, statusText, xhr, $form) {
-        text = $.parseJSON(responseText);
-        if (globalId > -1) {
-            if (text['src'] != '') {
-                $('#' + globalId).css("background-image", "url({{ asset('media/pictures/') }}" + text['src'] + ")");
-            }
-        }
-        else {
-            $container = $('#container');
-            for(i = 0; i < text.length; i++){
-                $container.prepend('<div class="box" style="background:url({{ asset('media/pictures/') }}' + text[i]['src'] + '); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + text[i]['id'] + '"><div id="c' + text[i]['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="cc' + text[i]['id'] + '" onclick="parkettImg(id);" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "></div></div>');
-            }
-            $container.masonry('reload');
-        }
-        $.modal.close();
-    }
-    function addParkett(id) {
+    <script type="text/javascript" src="{{ asset("js/ckeditor/ckeditor.js") }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.masonry.js') }}"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    {% include "AslanAdminBundle:Js:jquery.simplemodal-1.4.2.js.twig" %}
+    <script type="text/javascript">
         globalId = -1;
-        $.get('{{ path('AslanAdminBundle_admin_placeForm') }}', {}, function(data) {
-            $.modal(data, {maxHeight: null, minWidth: 800, minHeight: 800, onShow: function() {
-                    ajaxRout();
-                }});
-            $('#simplemodal-data').html($('.forms'));
-            $(".header").attr("required", false)
-            reloadCKEDITOR();
-        });
-    }
-    function editParkett(id) {
-        id = id.slice(1, id.length);
-        globalId = id;
-        $.post('{{ path('AslanAdminBundle_admin_idplace') }}', {"id": id}, function(data) {
-            $.get('{{ path('AslanAdminBundle_admin_placeForm') }}', {}, function(data2) {
-                $.modal(data2, {maxHeight: null, minWidth: 800, minHeight: 800, onShow: function() {
-                        ajaxRoutEdit();
-                    }});
-                $('#simplemodal-data').html($('.forms'));
-                //alert(data);
-                page = $.parseJSON(data);
-                $('.id').val(page[0][0]);
-                $('#names_name').text(page[0][1]);
-                $('#names_text').val(page[0][2]);
+        function reloadCKEDITOR() {
+            for (var instanceName in CKEDITOR.instances)
+                CKEDITOR.remove(CKEDITOR.instances[instanceName]);
+            CKEDITOR.replace('names[page]');
+        }
+        function routEdit(href) {
+            $.get(href, {}, function (data) {
+                var options = {
+                    success: showResponseEdit,
+                    clearForm: false
+                };
+                $("#pageSend").ajaxForm(options);
+            });
+        }
+        function rout2(href) {
+            $.get(href, {}, function (data) {
+                var options = {
+                    success: showResponse2,
+                    clearForm: false
+                };
+                $("#pageImg").ajaxForm(options);
+            });
+        }
+        function ajaxRout(id) {
+            $(".simplemodal-data form").on('submit', function() {
+                var that = this;
+
+                $.post($(that).attr('action'), $(that).serialize(), function(data) {
+                    showResponse(data, id);
+                });
+
+                return false;
+            });
+        }
+        function ajaxRoutEdit() {
+            routEdit('{{ path('AslanAdminBundle_admin_placeForm') }}');
+        }
+        function ajaxRout2() {
+            rout2('{{ path('AslanAdminBundle_admin_pageimgnew') }}');
+        }
+        function showResponse(responseText, id) {
+            responseText = $.parseJSON(responseText);
+
+            if ((!responseText.parentId && !id) || responseText.parentId == id) {
+                $container = $('#container');
+                $container.find('.box').eq($container.find('.box').length - 2).after('<div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + responseText['id'] + '"><div id="c' + responseText['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + responseText['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + responseText['id'] + '" onclick="parkettImg(id);" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + (responseText['head'] ? responseText['head'] : '') + '</h2></div></div>');
+                $container.masonry('reload');
+            } else {
+                if (!responseText.parentId) {
+                    parkettImg(responseText.id);
+                } else {
+                    parkettImg(responseText.parentId);
+                }
+            }
+
+            $.modal.close();
+        }
+        function showResponseEdit(responseText, statusText, xhr, $form) {
+            text = $.parseJSON(responseText);
+            $("#cc" + text['id']).find("h2").text(text['head']);
+            $.modal.close();
+        }
+        function showResponse2(responseText, statusText, xhr, $form) {
+            text = $.parseJSON(responseText);
+            if (globalId > -1) {
+                if (text['src'] != '') {
+                    $('#' + globalId).css("background-image", "url({{ asset('media/pictures/') }}" + text['src'] + ")");
+                }
+            }
+            else {
+                $container = $('#container');
+                for (i = 0; i < text.length; i++) {
+                    $container.prepend('<div class="box" style="background:url({{ asset('media/pictures/') }}' + text[i]['src'] + '); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + text[i]['id'] + '"><div id="c' + text[i]['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="cc' + text[i]['id'] + '" onclick="parkettImg(id);" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "></div></div>');
+                }
+                $container.masonry('reload');
+            }
+            $.modal.close();
+        }
+        function addParkett(id) {
+            id = id || null;
+
+            $.get('{{ path('AslanAdminBundle_admin_placeForm') }}', {}, function (data) {
+                $.modal(data, {
+                    maxHeight: null, minWidth: 800, minHeight: 800, overlayClose: true, onShow: function () {
+                        if (id) {
+                            $('#names_parent').val(id);
+                        }
+                        ajaxRout(id);
+                    }
+                });
                 reloadCKEDITOR();
             });
-        });
-    }
-    function deleteParkett(id) {
-        idDiv = $("#" + id).parent().attr('id');
-        $("#" + idDiv).remove();
-        $container = $('#container');
-        $container.masonry('reload');
-        $.post("{{ path('AslanAdminBundle_admin_removeplace') }}", {"id": idDiv});
-    }
-    function parkettImg(id) {
-        $('#backCollection').unbind('click');
-        $('#backCollection').click(function() {
-            if (globalId2 == -1) {
-                window.location.reload();
-            }
-            page(globalId2);
-        });
-        $.post("{{ path('AslanAdminBundle_admin_parkettImg') }}", {"id": id}, function(data) {
-            pages = $.parseJSON(data);
+        }
+        function editParkett(id) {
+            id = id.slice(1, id.length);
+            globalId = id;
+            $.post('{{ path('AslanAdminBundle_admin_idplace') }}', {"id": id}, function (data) {
+                $.get('{{ path('AslanAdminBundle_admin_placeForm') }}', {}, function (data2) {
+                    $.modal(data2, {
+                        maxHeight: null, minWidth: 800, minHeight: 800, overlayClose: true, onShow: function () {
+                            ajaxRoutEdit();
+                        }
+                    });
+                    $('#simplemodal-data').html($('.forms'));
+                    //alert(data);
+                    page = $.parseJSON(data);
+                    $('#names_id').val(page.id);
+                    $('#names_parent').val(page.parentId);
+                    $('#names_meta_title').val(page.metaTitle);
+                    $('#names_meta_description').val(page.metaDescription);
+                    $('#names_meta_keywords').val(page.metaKeywords);
+                    $('#names_head').text(page.head);
+                    $('#names_page').val(page.page);
+                    reloadCKEDITOR();
+                });
+            });
+        }
+        function deleteParkett(id) {
+            idDiv = $("#" + id).parent().attr('id');
+            $("#" + idDiv).remove();
             $container = $('#container');
-            $container.html('');
-            $container.prepend('<div class="box" id="adding"><div onclick="addImg(' + id + ');" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle;"><h2>Добавить фото</h2></div></div>');
-            for (i = 0; i < pages.length; i++) {
-                $container.prepend('<div class="box" style="background:url({{ asset('media/pictures/') }}' + pages[i]['src'] + '); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + pages[i]['id'] + '"><div id="c' + pages[i]['id'] + '" onclick="deleteImg(id);" class="closeButton"></div><div id="cc' + pages[i]['id'] + '" onclick="" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "></div></div>');
-            }
             $container.masonry('reload');
-        });
-    }
-    function deleteImg(id) {
-        idDiv = $("#" + id).parent().attr('id');
-        $("#" + idDiv).remove();
-        $container = $('#container');
-        $container.masonry('reload');
-        $.post("{{ path('AslanAdminBundle_admin_removepageimg') }}", {"id": idDiv}, function(data) {
-        });
-    }
-    function addImg(id) {
-        $.modal("<div class='form-actions'><form action='{{ path('AslanAdminBundle_admin_pageimgnew') }}' id='pageImg' method='post' enctype='multipart/form-data'><input type='text' name='idImg'  value='" + id + "' style='display:none;'><label class='control-label'>Выберите файлы</label><input name='files[]' type='file' multiple='true'/><br/><br/><input type='submit' class='btn btn-primary' value='Сохранить'/><input type='button' value='Отмена' class='simplemodal-close btn back'/></form></div>", {onShow: function() {
-                ajaxRout2();
-            }});
-    }
+            $.post("{{ path('AslanAdminBundle_admin_removeplace') }}", {"id": idDiv});
+        }
+        function parkettImg(id) {
+            $.post("{{ path('AslanAdminBundle_admin_parkettImg') }}", {"id": id}, function (data) {
+                var pages = $.parseJSON(data);
+                $container = $('#container');
+                $container.empty();
+                $container.parent().find('h1').remove();
+                $container.parent().find('.breadcrumb').remove();
+
+                $container.parent().prepend('<ol class="breadcrumb"></ol>');
+
+                $container.parent().find('.breadcrumb').append('<li><a href="/admin/place">Меню</a><span class="divider">/</span></li>');
+
+                if (pages.parents) {
+                    Object.keys(pages.parents).forEach(function(value, key) {
+                        $container.parent().find('.breadcrumb').append('<li><a href="#" onclick="parkettImg(' + pages.parents[key].id + ')">' + pages.parents[key].head + '</a><span class="divider">/</span></li>');
+                    });
+                }
+
+                $container.parent().find('.breadcrumb').append('<li class="active">' + pages.head + '</li>');
+
+                $container.parent().prepend('<h1>' + pages.head + '</h1>');
+                $container.prepend('<div class="box" id="adding"><div onclick="addImg(' + id + ');" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle;"><h2>Добавить фото</h2></div></div>');
+
+                if (pages.images) {
+                    for (var images = pages.images, i = 0; i < images.length; i++) {
+                        $container.prepend('<div class="box" style="background:url({{ asset('media/pictures/') }}' + images[i]['src'] + '); background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + images[i]['id'] + '"><div id="c' + images[i]['id'] + '" onclick="deleteImg(id);" class="closeButton"></div><div id="cc' + images[i]['id'] + '" onclick="" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "></div></div>');
+                    }
+                }
+
+                if (pages.children) {
+                    for (var children = pages.children, i = 0; i < children.length; i++) {
+                        $container.find('.box').eq($container.find('.box').length - 2).after('<div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + children[i]['id'] + '"><div id="c' + children[i]['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + children[i]['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + children[i]['id'] + '" onclick="parkettImg(' + children[i]['id'] + ');" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + (children[i]['head'] ? children[i]['head'] : '') + '</h2></div></div>');
+                    }
+                }
+
+                if(!pages.parent_id) {
+                    $container.find('.box').eq($container.find('.box').length - 1).after('<div class="box" id="adding"> <div onclick="addParkett(' + id + ');" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle;"><h2>Добавить</h2></div></div></div>');
+                }
+
+                $container.masonry('reload');
+            });
+        }
+        function deleteImg(id) {
+            idDiv = $("#" + id).parent().attr('id');
+            $("#" + idDiv).remove();
+            $container = $('#container');
+            $container.masonry('reload');
+            $.post("{{ path('AslanAdminBundle_admin_removepageimg') }}", {"id": idDiv}, function (data) {
+            });
+        }
+        function addImg(id) {
+            $.modal("<div class='form-actions'><form action='{{ path('AslanAdminBundle_admin_pageimgnew') }}' id='pageImg' method='post' enctype='multipart/form-data'><input type='text' name='idImg'  value='" + id + "' style='display:none;'><label class='control-label'>Выберите файлы</label><input name='files[]' type='file' multiple='true'/><br/><br/><input type='submit' class='btn btn-primary' value='Сохранить'/><input type='button' value='Отмена' class='simplemodal-close btn back'/></form></div>", {
+                minWidth: 800,
+                overlayClose: true,
+                onShow: function () {
+                    ajaxRout2();
+                }
+            });
+        }
     </script>
 {% endblock %}
 {% block content %}
     <div id="container" class="form-horizontal">
-{% for item in secondmenuall %}
-            <div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="{{ item.id }}">
+        {% for item in secondmenuall %}
+            <div class="box"
+                 style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;"
+                 id="{{ item.id }}">
                 <div id='c{{ item.id }}' onclick="deleteParkett(id);" class="closeButton"></div>
                 <div id='c{{ item.id }}' onclick="editParkett(id);" class="editButton"></div>
-                <div id="cc{{ item.id }}" onclick="parkettImg({{ item.id }});"  style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
+                <div id="cc{{ item.id }}" onclick="parkettImg({{ item.id }});" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
                      vertical-align: middle; overflow:hidden;">
-                         <h2>{{ item.head|raw }}</h2>
-                     </div>
+                    <h2>{{ item.head|raw }}</h2>
                 </div>
-{% endfor %}
-                <div class="box" id="adding">
-                    <div onclick="addParkett();" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
+            </div>
+        {% endfor %}
+        <div class="box" id="adding">
+            <div onclick="addParkett();" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;
                          vertical-align: middle;">
-                             <h2>Добавить</h2>
-                         </div>
-                    </div>
-                </div>
-                <script>
-    var $container = $('#container');
-    $container.masonry({
-        itemSelector: '.box',
-        isAnimated: true
-    });
-                    </script>
+                <h2>Добавить</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        var $container = $('#container');
+        $container.masonry({
+            itemSelector: '.box',
+            isAnimated: true
+        });
+    </script>
 {% endblock %}

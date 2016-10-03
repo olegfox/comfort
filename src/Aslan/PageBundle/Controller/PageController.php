@@ -9,13 +9,15 @@ use Aslan\PageBundle\Form\Type\EmailType;
 use Aslan\PageBundle\Entity\Email;
 use Aslan\BackgroundBundle\Entity\Background;
 
-class PageController extends StoreController {
+class PageController extends StoreController
+{
 
     //возврат рандомного фона
-    public function backgroundRandAction() {
+    public function backgroundRandAction()
+    {
 
         $repository = $this->getDoctrine()
-                ->getRepository('AslanBackgroundBundle:Background');
+            ->getRepository('AslanBackgroundBundle:Background');
         $img = $repository->findAll();
 //        $session = $this->getRequest()->getSession();
 //        $randSession = $session->get('rand');
@@ -37,7 +39,8 @@ class PageController extends StoreController {
         return $img;
     }
 
-    public function sizes($width, $height, $img_, $id) {
+    public function sizes($width, $height, $img_, $id)
+    {
         $siz_ = array();
         $s = $width;
         $s2 = $height;
@@ -73,12 +76,14 @@ class PageController extends StoreController {
         return $siz_;
     }
 
-    public function videoPreviewAction() {
+    public function videoPreviewAction()
+    {
         return $this
-                        ->render('AslanPageBundle:Default:videoPreview.html.twig');
+            ->render('AslanPageBundle:Default:videoPreview.html.twig');
     }
 
-    public function sizess($width, $height, $img_, $id) {
+    public function sizess($width, $height, $img_, $id)
+    {
         $siz_ = array();
         $s = $width;
         $s2 = $height;
@@ -115,7 +120,8 @@ class PageController extends StoreController {
         return $siz_;
     }
 
-    public function blogAction(Request $request) {
+    public function blogAction(Request $request)
+    {
         $number = $request->request->get('id');
         $blogs = parent::oneBlogsAction($number);
         $blog = array();
@@ -124,20 +130,22 @@ class PageController extends StoreController {
         return new Response(json_encode($blog));
     }
 
-    public function blogsAction() {
+    public function blogsAction()
+    {
         $blogs = parent::findAllAction('News');
         $contacts = parent::findOneAction('Page', 2);
         $about = parent::findOneAction('Page', 3);
         $bgr = $this->backgroundRandAction();
         return $this
-                        ->render('AslanPageBundle:Default:blogs.html.twig', array("title" => 'Blog', "blogs" => $blogs,
-                            'imgRand' => $bgr,
-                            "contacts" => $contacts->getText(),
-                            "about" => $about->getText()
-        ));
+            ->render('AslanPageBundle:Default:blogs.html.twig', array("title" => 'Blog', "blogs" => $blogs,
+                'imgRand' => $bgr,
+                "contacts" => $contacts->getText(),
+                "about" => $about->getText()
+            ));
     }
 
-    public function videosAction(Request $request) {
+    public function videosAction(Request $request)
+    {
         $number = $request->request->get('id');
         $blogs = parent::findOneAction('Video', $number);
         $blog = array();
@@ -145,7 +153,8 @@ class PageController extends StoreController {
         return new Response(json_encode($blog));
     }
 
-    public function searchAction() {
+    public function searchAction()
+    {
         $poroda = @$_POST['poroda'];
         $color = @$_POST["color"];
         $pokr = @$_POST["pokr"];
@@ -159,7 +168,8 @@ class PageController extends StoreController {
         return new Response(json_encode($send));
     }
 
-    public function searchBrandAction($id) {
+    public function searchBrandAction($id)
+    {
         $page = parent::brandPageAction($id);
         $secondmenu = parent::secondMenuAllAction();
         $thirdmenu = parent::thirdMenuAllAction();
@@ -211,12 +221,13 @@ class PageController extends StoreController {
             $left_ = '';
         }
         return $this
-                        ->render('AslanPageBundle:Default:searchId.html.twig', array("title" => "Поиск", "secondmenu" => $secondmenu,
-                            "thirdmenu" => $thirdmenu, "search" => "1",
-                            "page" => $page, 'siz' => $siz_));
+            ->render('AslanPageBundle:Default:searchId.html.twig', array("title" => "Поиск", "secondmenu" => $secondmenu,
+                "thirdmenu" => $thirdmenu, "search" => "1",
+                "page" => $page, 'siz' => $siz_));
     }
 
-    public function thirdmenuVseAction($number) {
+    public function thirdmenuVseAction($number)
+    {
         $secondmenu = parent::secondMenuAllAction();
         $thirdmenu = parent::thirdMenuAllAction();
         $page = parent::thirdMenuIdAction($number);
@@ -224,26 +235,28 @@ class PageController extends StoreController {
         $men = $_GET['men'];
         $id = '0';
         return $this
-                        ->render('AslanPageBundle:Default:thirdmenu.html.twig', array("title" => 'Страница',
-                            "secondmenu" => $secondmenu,
-                            "thirdmenu" => $thirdmenu, 'men' => $men,
-                            'id' => $id, "page" => $page, 'blogs' => $blogs));
+            ->render('AslanPageBundle:Default:thirdmenu.html.twig', array("title" => 'Страница',
+                "secondmenu" => $secondmenu,
+                "thirdmenu" => $thirdmenu, 'men' => $men,
+                'id' => $id, "page" => $page, 'blogs' => $blogs));
     }
 
-    public function pageAction($id) {
+    public function pageAction($id)
+    {
         $secondmenu = parent::secondMenuAllAction();
         $onemenu = parent::oneMenuAction($id);
         $thirdmenu = parent::thirdMenuAllAction();
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:page.html.twig', array("title" => $onemenu->getName(),
-                            "onemenu" => $onemenu,
-                            "secondmenu" => $secondmenu,
-                            "baner" => $baner,
-                            "thirdmenu" => $thirdmenu, "id" => $id));
+            ->render('AslanPageBundle:Default:page.html.twig', array("title" => $onemenu->getName(),
+                "onemenu" => $onemenu,
+                "secondmenu" => $secondmenu,
+                "baner" => $baner,
+                "thirdmenu" => $thirdmenu, "id" => $id));
     }
 
-    public function albumsAction() {
+    public function albumsAction()
+    {
         $img = parent::findAllAction('Albums');
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -251,23 +264,24 @@ class PageController extends StoreController {
         $baner = parent::findAllAction('Baner');
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         return $this
-                        ->render('AslanPageBundle:Default:albums.html.twig', array(
-                            "title" => 'Фото',
-                            "albums" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:albums.html.twig', array(
+                "title" => 'Фото',
+                "albums" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function afishaJsonAction(Request $request) {
+    public function afishaJsonAction(Request $request)
+    {
         $id = explode(":", (string)$request->get('id'));
         //return new Response(json_encode($id));
         $response = array();
         $i = 0;
-        foreach($id as $val){
+        foreach ($id as $val) {
             $afisha = parent::findOneAction('Afisha', $val);
             $response[$i]['id'] = $afisha->getId();
             $response[$i]['slug'] = $afisha->getSlug();
@@ -278,13 +292,14 @@ class PageController extends StoreController {
         }
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         return $this
-                        ->render('AslanPageBundle:Default:afishaOne.html.twig', array(
-                            "afisha" => $response,
-                            "months" => $months
-        ));
+            ->render('AslanPageBundle:Default:afishaOne.html.twig', array(
+                "afisha" => $response,
+                "months" => $months
+            ));
     }
 
-    public function afishaAction() {
+    public function afishaAction()
+    {
         $img = parent::findAllAction('Afisha');
         $i = 0;
         $dat = array();
@@ -317,10 +332,10 @@ class PageController extends StoreController {
         foreach ($img as $item) {
             for ($j = 0; $j < count($dat); $j++) {
                 if ($item->getDate() == $dat[$j]['date']) {
-                    if(isset($d[$j])){
-                        $d[$j] = $d[$j].(string)$item->getId().':';
-                    }else{
-                        $d[$j] = (string)$item->getId().':';
+                    if (isset($d[$j])) {
+                        $d[$j] = $d[$j] . (string)$item->getId() . ':';
+                    } else {
+                        $d[$j] = (string)$item->getId() . ':';
                     }
                     $dat[$j]['count'] = $dat[$j]['count'] + 1;
                     $dat[$j]['title'] = '<a href="#" onclick="openDay(\'' . $d[$j] . '\'); return false;">' . $dat[$j]['count'] . '</a>';
@@ -336,19 +351,20 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:afisha.html.twig', array(
-                            "title" => 'Фото',
-                            "afisha" => $img,
-                            "afisha_json" => $afisha,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:afisha.html.twig', array(
+                "title" => 'Фото',
+                "afisha" => $img,
+                "afisha_json" => $afisha,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function afishaOneAction($slug) {
+    public function afishaOneAction($slug)
+    {
         $img = parent::findOneSlugAction('Afisha', $slug);
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -356,18 +372,19 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:page.html.twig', array(
-                            "title" => 'Фото',
-                            "page" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:page.html.twig', array(
+                "title" => 'Фото',
+                "page" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function placeAction() {
+    public function placeAction()
+    {
         $img = parent::findAllAction('News');
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -375,18 +392,19 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:place.html.twig', array(
-                            "title" => 'Фото',
-                            "place" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:place.html.twig', array(
+                "title" => 'Фото',
+                "place" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function placeOneAction($slug) {
+    public function placeOneAction($slug)
+    {
         $img = parent::findOneSlugAction('News', $slug);
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -394,18 +412,19 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:placeOne.html.twig', array(
-                            "title" => 'Фото',
-                            "place" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:placeOne.html.twig', array(
+                "title" => 'Фото',
+                "place" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function categoriiAction() {
+    public function categoriiAction()
+    {
         $img = parent::findAllAction('Category');
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -413,18 +432,19 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:categorii.html.twig', array(
-                            "title" => 'Фото',
-                            "category" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:categorii.html.twig', array(
+                "title" => 'Фото',
+                "category" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function albumAction($name) {
+    public function albumAction($name)
+    {
         $img = parent::findAllAction('Image');
         $bgr = $this->backgroundRandAction();
         $top_menu = parent::findAllAction('Page', 0);
@@ -432,18 +452,19 @@ class PageController extends StoreController {
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:album.html.twig', array(
-                            "title" => 'Фото',
-                            "album" => $img,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "months" => $months,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:album.html.twig', array(
+                "title" => 'Фото',
+                "album" => $img,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "months" => $months,
+                "baner" => $baner
+            ));
     }
 
-    public function photoAction() {
+    public function photoAction()
+    {
         $img = parent::findAllAction('Image', "photo");
         $contacts = parent::findOneAction('Page', 2);
         $about = parent::findOneAction('Page', 3);
@@ -458,21 +479,22 @@ class PageController extends StoreController {
         $locale = $this->get('request')->getLocale();
         for ($j = 0; $j < count($img); $j++) {
             $sizes[$j] = $this
-                    ->sizes(205, 205, $img[$j]->getSrc(), $img[$j]->getId());
+                ->sizes(205, 205, $img[$j]->getSrc(), $img[$j]->getId());
         }
         $bgr = $this->backgroundRandAction();
         $images = parent::findAllArrayAction('Image', "photo");
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:catalog.html.twig', array("title" => 'Фото',
-                            "columns" => $columns, "images" => $images, "siz" => $sizes, 'imgRand' => $bgr,
-                            "contacts" => $contacts->getText(),
-                            "about" => $about->getText(),
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:catalog.html.twig', array("title" => 'Фото',
+                "columns" => $columns, "images" => $images, "siz" => $sizes, 'imgRand' => $bgr,
+                "contacts" => $contacts->getText(),
+                "about" => $about->getText(),
+                "baner" => $baner
+            ));
     }
 
-    public function lifeAction() {
+    public function lifeAction()
+    {
         $img = parent::findAllAction('Image', "life");
         $contacts = parent::findOneAction('Page', 2);
         $about = parent::findOneAction('Page', 3);
@@ -487,19 +509,20 @@ class PageController extends StoreController {
         $locale = $this->get('request')->getLocale();
         for ($j = 0; $j < count($img); $j++) {
             $sizes[$j] = $this
-                    ->sizes(205, 205, $img[$j]->getSrc(), $img[$j]->getId());
+                ->sizes(205, 205, $img[$j]->getSrc(), $img[$j]->getId());
         }
         $bgr = $this->backgroundRandAction();
         $images = parent::findAllArrayAction('Image', "life");
         return $this
-                        ->render('AslanPageBundle:Default:catalog.html.twig', array("title" => 'Фото',
-                            "columns" => $columns, "images" => $images, "siz" => $sizes, 'imgRand' => $bgr,
-                            "contacts" => $contacts->getText(),
-                            "about" => $about->getText()
-        ));
+            ->render('AslanPageBundle:Default:catalog.html.twig', array("title" => 'Фото',
+                "columns" => $columns, "images" => $images, "siz" => $sizes, 'imgRand' => $bgr,
+                "contacts" => $contacts->getText(),
+                "about" => $about->getText()
+            ));
     }
 
-    public function pageimgidAction(Request $request) {
+    public function pageimgidAction(Request $request)
+    {
         $id = $request->request->get('id');
         $pageimg = parent::oneParkettAction($id);
         $send = array();
@@ -515,7 +538,8 @@ class PageController extends StoreController {
         return new Response(json_encode($send));
     }
 
-    public function homeAction() {
+    public function homeAction()
+    {
         $page = parent::findOneAction('Page', 1);
         $top_menu = parent::findAllAction('Page', 0);
         $bottom_menu = parent::findAllAction('Page', 1);
@@ -527,35 +551,37 @@ class PageController extends StoreController {
         $baner = parent::findAllAction('Baner');
         $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
         return $this
-                        ->render(
-                                'AslanPageBundle:Default:main.html.twig', array(
-                            'title' => '',
-                            "page" => $page,
-                            'imgRand' => $bgr,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "sliders" => $sliders,
-                            "places" => $places,
-                            "albums" => $albums,
-                            "months" => $months,
-                            "afisha" => $afisha,
-                            "baner" => $baner
-        ));
+            ->render(
+                'AslanPageBundle:Default:main.html.twig', array(
+                'title' => '',
+                "page" => $page,
+                'imgRand' => $bgr,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "sliders" => $sliders,
+                "places" => $places,
+                "albums" => $albums,
+                "months" => $months,
+                "afisha" => $afisha,
+                "baner" => $baner
+            ));
     }
 
-    public function aboutAction() {
+    public function aboutAction()
+    {
         $page = parent::findOneAction('Page', 1);
         $about = parent::findOneAction('Page', 3);
         $contacts = parent::findOneAction('Page', 2);
         $bgr = $this->backgroundRandAction();
         return $this
-                        ->render(
-                                'AslanPageBundle:Default:page.html.twig', array('title' => '', "page" => $page, "about" => $about->getText(), 'imgRand' => $bgr, "contacts" => $contacts->getText()));
+            ->render(
+                'AslanPageBundle:Default:page.html.twig', array('title' => '', "page" => $page, "about" => $about->getText(), 'imgRand' => $bgr, "contacts" => $contacts->getText()));
     }
 
-    public function pageMenuAction($slug) {
+    public function pageMenuAction($slug)
+    {
         $page = parent::oneMenuSlugAction($slug);
-        if(count($page) <= 0){
+        if (count($page) <= 0) {
             $page = parent::findOneSlugAction('News', $slug);
         }
         $top_menu = parent::findAllAction('Page', 0);
@@ -563,29 +589,30 @@ class PageController extends StoreController {
         $sliders = parent::sliderAction();
         $places = parent::findAllAction('News');
         return $this
-                        ->render(
-                                'AslanPageBundle:Default:page.html.twig', array(
-                                    'title' => '',
-                                    "page" => $page,
-                                    "top_menu" => $top_menu,
-                                    "bottom_menu" => $bottom_menu,
-                                    "sliders" => $sliders,
-                                    "places" => $places
-                ));
+            ->render(
+                'AslanPageBundle:Default:page.html.twig', array(
+                'title' => '',
+                "page" => $page,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "sliders" => $sliders,
+                "places" => $places
+            ));
     }
 
-    public function videoAction(Request $request) {
+    public function videoAction(Request $request)
+    {
         $video = parent::videoFindAllAction();
         $top_menu = parent::findAllAction('Page', 0);
         $bottom_menu = parent::findAllAction('Page', 1);
         $baner = parent::findAllAction('Baner');
         return $this
-                        ->render('AslanPageBundle:Default:video.html.twig', array("title" => 'Мультики',
-                            "video" => $video,
-                            "top_menu" => $top_menu,
-                            "bottom_menu" => $bottom_menu,
-                            "baner" => $baner
-        ));
+            ->render('AslanPageBundle:Default:video.html.twig', array("title" => 'Мультики',
+                "video" => $video,
+                "top_menu" => $top_menu,
+                "bottom_menu" => $bottom_menu,
+                "baner" => $baner
+            ));
     }
 
 }

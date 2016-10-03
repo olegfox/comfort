@@ -716,7 +716,7 @@ class StoreController extends Controller {
     public function blogsAllAction() {
         $repository = $this->getDoctrine()
                 ->getRepository('AslanStoreBundle:News');
-        $page = $repository->findAll();
+        $page = $repository->findBy(array('parent' => null));
         return $page;
     }
 
@@ -801,25 +801,14 @@ class StoreController extends Controller {
         $em->flush();
     }
 
-    public function blogsUpdateAction($name, $text, $id) {
-        if ($id == '') {
-            $brand = new News();
-        } else {
-            $repository = $this->getDoctrine()
-                    ->getRepository('AslanStoreBundle:News');
-            $brand = $repository->findOneBy(array("id" => $id));
-        }
-        if ($text)
-            $brand->setPage($text);
-        if ($name)
-            $brand->setHead($name);
+    public function blogsUpdateAction($entity) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($brand);
+        if (!$entity->getId()) {
+            $em->persist($entity);
+        }
         $em->flush();
-        $blogs = array();
-        $blogs['id'] = $brand->getId();
-        $blogs['head'] = $brand->getHead();
-        return json_encode($blogs);
+
+        return $entity->getJson();
     }
 
     public function categoryUpdateAction($name, $fileName, $id) {
@@ -905,12 +894,42 @@ class StoreController extends Controller {
                 ->getRepository('AslanStoreBundle:News');
         $page = $repository->find($id);
         $pageimg = $page->getPageimgs();
-        $imgs = array();
-        for ($i = 0; $i < count($pageimg); $i++) {
-            $imgs[$i]['id'] = $pageimg[$i]->getId();
-            $imgs[$i]['src'] = $pageimg[$i]->getImg();
+        $response = array();
+
+        $response['head'] = $page->getHead();
+
+        $parent = $page->getParent();
+
+        while($parent) {
+            $response['parents'][] = array(
+                'id' => $parent->getId(),
+                'head' => $parent->getHead()
+            );
+
+            $parent = $parent->getParent();
         }
-        return json_encode($imgs);
+
+        for ($i = 0; $i < count($pageimg); $i++) {
+            $response['images'][$i]['id'] = $pageimg[$i]->getId();
+            $response['images'][$i]['src'] = $pageimg[$i]->getImg();
+        }
+
+        foreach($page->getChildren() as $children) {
+            $response['children'][] = array(
+                'id' => $children->getId(),
+                'head' => $children->getHead(),
+                'slug' => $children->getSlug(),
+                'metaTitle' => $children->getMetaTitle(),
+                'metaDescription' => $children->getMetaDescription(),
+                'metaKeywords' => $children->getMetaKeywords(),
+                'page' => $children->getPage(),
+                'parentId' => is_object($children->getParent()) ? $children->getParent()->getId() : null
+            );
+        }
+
+        $response['parent_id'] = is_object($page->getParent()) ? $page->getParent()->getId() : null;
+
+        return json_encode($response);
     }
 
     public function thirdMenuUpdateAction($text, $text2, $text3, $id) {
@@ -1121,10 +1140,18 @@ class StoreController extends Controller {
         $repository = $this->getDoctrine()
                 ->getRepository('AslanStoreBundle:News');
         $page = $repository->findOneBy(array("id" => $id));
-        if (file_exists("media/pictures/" . $page->getImg()))
-            unlink("media/pictures/" . $page->getImg());
-        if (file_exists("media/pictures/small" . $page->getImg()))
-            unlink("media/pictures/small" . $page->getImg());
+
+        foreach($page->getPageimgs() as $img) {
+            if (file_exists("media/pictures/" . $img->getImg()))
+                unlink("media/pictures/" . $img->getImg());
+            if (file_exists("media/pictures/small" . $img->getImg()))
+                unlink("media/pictures/small" . $img->getImg());
+        }
+
+        foreach($page->getChildren() as $children) {
+            $this->blogRemoveAction($children->getId());
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($page);
         $em->flush();
