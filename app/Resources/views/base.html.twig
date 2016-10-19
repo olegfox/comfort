@@ -1,91 +1,18 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title></title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <link rel='stylesheet' type="text/css" href='{{ asset('css/style.css') }}'></link>
-        <link rel='stylesheet' type="text/css" href='{{ asset('css/style2.css') }}'></link>
-        <link rel='stylesheet' type="text/css" href='{{ asset('css/flexslider.css') }}'></link>
-        {% block style %}
-        {% endblock %}
-    </head>
-    <body>
-        <div class="b-bkg-slideshow">
-            {% if app.request.attributes.get('_route') != "AslanPageBundle_home" %}
-                {% for slider in sliders %}
-                <div class="b-bkg-slideshow-item" style="background-image: url({{ asset('media/pictures/'~slider.src) }});"></div>
-                {% endfor %}
-            {% endif %}
-        </div>
-        <div class="sidebar-left">
-            <div class="menu-0">
-                <ul>
-                    <li>
-                        <a href="{{ path('AslanPageBundle_home') }}" >sector-comfort.ru</a> 
-                    </li>
-                </ul>    
-            </div>    
-            <div class="list-menu">
-                {% set i = 1 %}
-                <div class="menu-{{ i }}">
-                <ul>
-                {% for place in places %}
-                {% if place.head == "&nbsp;" %}
-                </ul>
-                </div>     
-                <div class="menu-{{ i }}">
-                <ul> 
-                {% set i = i + 1 %}    
-                {% else %}     
-                <li>    
-                    <a href="{{ path('AslanPageBundle_page', {'slug' : place.slug}) }}">{{ place.head }}</a>
-                </li> 
-                {% if loop.index == places|length %}
-                </ul>
-                </div>      
-                {% endif %}
-                {% endif %}
-                {% endfor %}           
-                <div class="menu-4">
-                    <ul>
-                        <li>    
-                            <a href="{{ path('AslanPageBundle_page', {'slug' : top_menu[0].slug}) }}">{{ top_menu[0].name }}</a>
-                        </li>
-                    </ul>
-                </div>    
-                <div class="menu-5">
-                    <ul>
-                        <li>    
-                            <a href="{{ path('AslanPageBundle_page', {'slug' : top_menu[1].slug}) }}">{{ top_menu[1].name }}</a>
-                        </li>
-                    </ul>
-                </div>
-                {#<div class="menu-6">
-                    <ul>
-                        <li>    
-                            <a href="{{ path('AslanPageBundle_page', {'slug' : top_menu[2].slug}) }}">{{ top_menu[2].name }}</a>
-                        </li>
-                    </ul>
-                </div>    
-                <div class="menu-7">
-                    <ul>
-                        <li>    
-                            <a href="{{ path('AslanPageBundle_page', {'slug' : top_menu[3].slug}) }}">{{ top_menu[3].name }}</a>
-                        </li>
-                    </ul>
-                </div>#}  
-            </div>    
-        </div>
-            {% block content %}
-            {% endblock %}
-            {% block javascript %}
-            {% if app.request.attributes.get('_route') != "AslanPageBundle_home" %}
-                <script type="text/javascript" src="{{ asset('js/libs/bkg/bkg-slideshow.js') }}"></script>
-            {% else %}
-                <script type="text/javascript" src="{{ asset('js/jquery.tubular/jquery.tubular.1.0.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/jquery.tubular/index.js') }}"></script>
-            {% endif %}
-            <script type="text/javascript" src="{{ asset('js/libs/script.js') }}"></script>
-            {% endblock %}
-        </body>
-    </html>
+<!DOCTYPE html>
+<html {% block html %}{% endblock %}>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="Description" content="{% block meta_description %}{% endblock %}">
+    <meta name="Keywords" content="{% block meta_keywords %}{% endblock %}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -549,10 +549,10 @@ class PageController extends StoreController
         $albums = parent::findAllAction('Albums');
         $afisha = parent::findAllAction('Afisha');
         $baner = parent::findAllAction('Baner');
-        $months = array("", "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
+
         return $this
             ->render(
-                'AslanPageBundle:Default:main.html.twig', array(
+                'AslanPageBundle:Main:index.html.twig', array(
                 'title' => '',
                 "page" => $page,
                 'imgRand' => $bgr,
@@ -561,7 +561,6 @@ class PageController extends StoreController
                 "sliders" => $sliders,
                 "places" => $places,
                 "albums" => $albums,
-                "months" => $months,
                 "afisha" => $afisha,
                 "baner" => $baner
             ));

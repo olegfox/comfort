@@ -1,0 +1,128 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: #ffffff; }
+
+input, textarea, keygen, select, button {
+  font-family: 'Ubuntu', sans-serif;
+  color: #ffffff; }
+
+.btn {
+  color: #ffffff; }
+
+h1 {
+  font-size: 32px;
+  color: #ffffff; }
+
+h2 {
+  font-size: 21px;
+  color: #ffffff; }
+
+.wrap-header.level38 .video-vide {
+  position: absolute !important; }
+
+.wrap-header.level38 .shadow {
+  opacity: 0.2; }
+
+.wrap-line.level39 {
+  height: 500px; }
+
+.wrap-line.level39 .line .wrap-center-block .center-block {
+  vertical-align: middle; }
+
+.wrap-line.level39 .line .wrap-center-block .center-block .text-block {
+  width: 1000px; }
+
+.wrap-square.level92 ul li {
+  min-height: 300px;
+  width: 25%; }
+
+.wrap-square.level92 ul li .title {
+  font-size: 16; }
+
+.wrap-square.level92 .square ul li .shadow {
+  opacity: 0.6;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
+
+.wrap-square.level92 .square ul li:hover .shadow {
+  opacity: 0.3; }
+
+.wrap-square.level92 .square ul li .title {
+  text-shadow: 1px 1px 2px black, 0 0 1em black; }
+
+.wrap-square.level104 ul li {
+  min-height: 300px;
+  width: 25%; }
+
+.wrap-square.level104 ul li .title {
+  font-size: 16; }
+
+.wrap-square.level104 .square ul li .shadow {
+  opacity: 0.6;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
+
+.wrap-square.level104 .square ul li:hover .shadow {
+  opacity: 0.3; }
+
+.wrap-square.level104 .square ul li .title {
+  text-shadow: 1px 1px 2px black, 0 0 1em black; }
+
+.wrap-square.level105 ul li {
+  min-height: 300px;
+  width: 25%; }
+
+.wrap-square.level105 ul li .title {
+  font-size: 16; }
+
+.wrap-square.level105 .square ul li .shadow {
+  opacity: 0.6;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
+
+.wrap-square.level105 .square ul li:hover .shadow {
+  opacity: 0.3; }
+
+.wrap-square.level105 .square ul li .title {
+  text-shadow: 1px 1px 2px black, 0 0 1em black; }
+
+.wrap-line.level106 {
+  height: 400px; }
+
+.wrap-line.level106 .line .wrap-center-block .center-block {
+  vertical-align: middle; }
+
+.wrap-line.level106 .line .wrap-center-block .center-block .text-block {
+  width: 1000px; }
+
+.wrap-comment.level107 ul li {
+  min-height: 500px; }
+
+.wrap-comment.level107 ul li .wrap_wrap {
+  max-width: 1000px; }
+
+.wrap-comment.level107 .wrap-head .head {
+  height: 60px;
+  line-height: 60px;
+  background-color: #ebcb6a; }
+
+.wrap-form.level108 {
+  min-height: 300px; }
+
+.wrap-form.level108 {
+  background-color: #ebcb6a; }
+
+.wrap-line.level122 {
+  height: 100px;
+  background-color: #b0945d; }
+
+.wrap-line.level122 .line .wrap-center-block .center-block {
+  vertical-align: middle; }
+
+/*# sourceMappingURL=custom.css.map */

@@ -1,21 +1,48 @@
 {% extends "::base.html.twig" %}
-{% block style %}
-{{ parent() }}
+
+{% block title %}Компания &quot;Сектор комфорта&quot;{% endblock %}
+{% block meta_description %}&quot;Сектор Комфорта&quot; - дизайн-проекты и мебель на заказ, которые радуют глаз!{% endblock %}
+{% block meta_keywords %}мебель на заказ, дизайн-проекты{% endblock %}
+
+{% block stylesheets %}
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,700italic,500italic,500,400italic,300italic,300&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    {% stylesheets
+    'bundles/aslanpage/js/jquery-colorbox/example3/colorbox.css'
+    'bundles/aslanpage/css/animate.min.css'
+    'bundles/aslanpage/css/main.css'
+    'bundles/aslanpage/css/slick-theme.css'
+    'bundles/aslanpage/css/slick.css'
+    'bundles/aslanpage/css/custom.css'
+    filter='yui_css' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
 {% endblock %}
-{% block content %}
-{{ parent() }}
+
+{% block body %}
+
 {% endblock %}
-{% block lenta %}
-{{ parent() }}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    {% javascripts
+    'bundles/aslanpage/js/jquery-colorbox/jquery.colorbox-min.js'
+    'bundles/aslanpage/js/jquery-validation/dist/jquery.validate.min.js'
+    'bundles/aslanpage/js/jquery-form/jquery.form.js'
+    'bundles/aslanpage/js/vide/dist/jquery.vide.js'
+    'bundles/aslanpage/js/wow.min.js'
+    'bundles/aslanpage/js/main.js'
+    'bundles/aslanpage/js/slick.min.js'
+    filter='yui_js' %}
+    <script type="text/javascript" src="{{ asset_url }}" id="scripts"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(function(){
+            if($('.comment ul').length > 0) {
+                $('.comment ul').slick();
+            }
+        });
+    </script>
 {% endblock %}
-{% block baner %}
-{{ parent() }}
-{% for b in baner %}
-<a href="{{ b.href }}"><img src="{{ asset('media/pictures/'~b.src) }}" alt="{{ asset('media/pictures/'~b.src) }}" /></a>
-{% endfor %}
-{% endblock %}
-{% block javascript %}
-<script type="text/javascript" src="{{ asset("js/jquery-1.7.2.min.js") }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-{{ parent() }}
-{% endblock %}
+
