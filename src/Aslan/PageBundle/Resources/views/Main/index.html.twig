@@ -1,5 +1,7 @@
 {% extends 'AslanPageBundle::layout.html.twig' %}
 
+{% from 'AslanPageBundle:Category:macros.html.twig' import grid %}
+
 {% block body %}
     <!-- Module Header -->
     <div class="wrap-header level-block level38" data-video="{{ asset('bundles/aslanpage/uploads/siektor-komforta/moduleHeader/shutterstock_v4531841.mp4') }}">
@@ -79,259 +81,17 @@
     <!-- end Module Line -->
 
     <!-- Module Square -->
+    {% if categories|length > 0 %}
     <div class="wrap-square level-block level92">
         <div class="square">
 
             <!-- Squares Block -->
-            <ul>
-                <li style="
-                            background-image: url('./cache/6/b/2/0/5/6b2059fe4945835840dfcc050aff9cc31036238c.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:18px"><span style="color:#FFFFFF">Кухни</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/8/e/a/e/4/8eae4a88837a63e4e9b5333b94778182fb89daf3.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Гостинные</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/2/e/0/2/b/2e02be15ca2496742282b04c6d151b2f643b3c4f.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Спальни</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/2/4/5/f/5/245f5c270c42a184315ad102fea00e49a16c2df8.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Детские комнаты</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            {{ grid(categories) }}
             <!-- end Squares Block -->
 
         </div>
     </div>
-    <!-- end Module Square -->
-
-    <!-- Module Square -->
-    <div class="wrap-square level-block level104">
-        <div class="square">
-
-            <!-- Squares Block -->
-            <ul>
-                <li style="
-                            background-image: url('./cache/e/6/4/d/c/e64dc42ae9e7fad555520836390e1c0e6b8ddde1.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Классика</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/e/0/6/8/3/e0683fec84b3636856357eaf235a47ab1b28f468.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Шкафы-купе</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/7/b/b/5/d/7bb5dabc7590ec8fc34ad7de619ebdabc855b248.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Гардеробы</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/a/5/1/4/f/a514f0adcd85f1d48390f8e6b0d43e0fddabe274.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Стеллажи</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <!-- end Squares Block -->
-
-        </div>
-    </div>
-
-    <!-- end Module Square -->
-
-    <!-- Module Square -->
-    <div class="wrap-square level-block level105">
-        <div class="square">
-
-            <!-- Squares Block -->
-            <ul>
-                <li style="
-                            background-image: url('./cache/e/8/1/4/6/e8146b9f8aa8f7c01a19cd94ebb3f16e5e2fbfeb.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Стеклянные перегородки</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/8/c/9/1/c/8c91cef6ea0f3639a2611682be41fb18e6c0544c.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="color:#FFFFFF"><span style="font-size:20px">Стеклянные двери</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/2/f/a/d/4/2fad4505a9eff1dc4005fac0159c7240161a5bf6.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Зеркала</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="
-                            background-image: url('./cache/c/2/9/d/4/c29d454d75f2c53e9859954a4efdb6e82e9b79d2.jpeg');                                                                                    background-size: cover;                            background-attachment: scroll;                        ">
-                    <div class="wrap_wrap">
-                        <div class="wrap">
-                            <div class="inner">
-                                <div class="shadow"
-                                        >
-                                </div>
-                                <div class="blur"
-                                     style="
-                                                                                          "
-                                        >
-                                </div>
-                                <div class="title" ><p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Витражи</span></span></p></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <!-- end Squares Block -->
-
-        </div>
-    </div>
+    {% endif %}
     <!-- end Module Square -->
 
     <!-- Module Line -->
@@ -426,26 +186,5 @@
 
     <!-- end Module Map -->
 
-    <!-- Module Form -->
-    {% include 'AslanPageBundle:Feedback:index.html.twig' %}
-    <!-- end Module Form -->
-
-    <div class="wrap-line level-block level122">
-        <div class="shadow"></div>
-        <div class="line">
-
-            <!-- Center Block -->
-            <div class="wrap-center-block">
-                <div class="center-block">
-                    <div class="text-block">
-                        <p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Так же Вы можете позвонить нам по телефону: +7(965)160-11-66</span></span></p>
-
-                        <p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Мы ждем Вашего звонка!&nbsp;</span></span></p>
-                    </div>
-                </div>
-            </div>
-            <!-- end Center Block -->
-
-        </div>
-    </div>
+    {{ parent() }}
 {% endblock %}

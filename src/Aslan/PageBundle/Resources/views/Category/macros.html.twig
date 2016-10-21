@@ -1,0 +1,48 @@
+{% macro grid(items) %}
+    {% if items|length > 0 %}
+        <ul>
+        {% for item in items %}
+            <li style="{% if item.preview %}background-image: url('{{ image('media/pictures/'~item.preview.img).zoomCrop(500, 500) }}'); background-size: cover; background-attachment: scroll; {% endif %}background-color: #000;">
+                <a href="{{ path('AslanPageBundle_page', {slug: item.slug}) }}" class="wrap_wrap">
+                    <div class="wrap">
+                        <div class="inner">
+                            <div class="shadow"></div>
+                            <div class="blur"></div>
+                            <div class="title"><p style="text-align:center"><span style="font-size:18px"><span style="color:#FFFFFF">{{ item.head }}</span></span></p></div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro one(item) %}
+    <div class="panel panel-head">
+        <h1>{{ item.head }}</h1>
+    </div>
+    <div class="panel panel-description">
+        {{ item.page|raw }}
+    </div>
+    {% if item.pageimgs|length > 0 %}
+        <div class="wrap-square level-block level92">
+            <div class="square">
+                <ul>
+                    {% for img in item.pageimgs %}
+                        <li style="background-image: url('{{ image('media/pictures/'~img.img).zoomCrop(500, 500) }}'); background-size: cover; background-attachment: scroll; background-color: #000;">
+                            <a href="" class="wrap_wrap">
+                                <div class="wrap">
+                                    <div class="inner">
+                                        <div class="shadow"></div>
+                                        <div class="blur"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

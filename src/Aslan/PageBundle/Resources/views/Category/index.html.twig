@@ -1,0 +1,8 @@
+{% extends 'AslanPageBundle::layout.html.twig' %}
+
+{% from 'AslanPageBundle:Category:macros.html.twig' import one %}
+
+{% block body %}
+    {{ one(category) }}
+    {{ parent() }}
+{% endblock %}

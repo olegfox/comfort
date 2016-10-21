@@ -6,37 +6,61 @@
 
 {% block stylesheets %}
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,700italic,500italic,500,400italic,300italic,300&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
-    {% stylesheets
-    'bundles/aslanpage/js/jquery-colorbox/example3/colorbox.css'
-    'bundles/aslanpage/css/animate.min.css'
-    'bundles/aslanpage/css/main.css'
-    'bundles/aslanpage/css/slick-theme.css'
-    'bundles/aslanpage/css/slick.css'
-    'bundles/aslanpage/css/custom.css'
-    filter='yui_css' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
-    {% endstylesheets %}
+    {#{% stylesheets#}
+    {#'bundles/aslanpage/js/jquery-colorbox/example3/colorbox.css'#}
+    {#'bundles/aslanpage/css/animate.min.css'#}
+    {#'bundles/aslanpage/css/main.css'#}
+    {#'bundles/aslanpage/css/slick-theme.css'#}
+    {#'bundles/aslanpage/css/slick.css'#}
+    {#'bundles/aslanpage/css/custom.css'#}
+    {#%}#}
+    {#<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />#}
+    {#{% endstylesheets %}#}
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/js/jquery-colorbox/example3/colorbox.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/animate.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/main.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/slick-theme.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/slick.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/custom.css') }}" type="text/css"/>
 {% endblock %}
 
 {% block body %}
+    <!-- Module Form -->
+    {% include 'AslanPageBundle:Feedback:index.html.twig' %}
+    <!-- end Module Form -->
 
+    <div class="wrap-line level-block level122">
+        <div class="shadow"></div>
+        <div class="line">
+
+            <!-- Center Block -->
+            <div class="wrap-center-block">
+                <div class="center-block">
+                    <div class="text-block">
+                        <p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Так же Вы можете позвонить нам по телефону: +7(965)160-11-66</span></span></p>
+
+                        <p style="text-align:center"><span style="font-size:20px"><span style="color:#FFFFFF">Мы ждем Вашего звонка!&nbsp;</span></span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- end Center Block -->
+
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    {% javascripts
-    'bundles/aslanpage/js/jquery-colorbox/jquery.colorbox-min.js'
-    'bundles/aslanpage/js/jquery-validation/dist/jquery.validate.min.js'
-    'bundles/aslanpage/js/jquery-form/jquery.form.js'
-    'bundles/aslanpage/js/vide/dist/jquery.vide.js'
-    'bundles/aslanpage/js/wow.min.js'
-    'bundles/aslanpage/js/main.js'
-    'bundles/aslanpage/js/slick.min.js'
-    filter='yui_js' %}
-    <script type="text/javascript" src="{{ asset_url }}" id="scripts"></script>
-    {% endjavascripts %}
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/jquery-colorbox/jquery.colorbox-min.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/jquery-validation/dist/jquery.validate.min.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/jquery-form/jquery.form.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/vide/dist/jquery.vide.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/vide/dist/jquery.vide.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/wow.min.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/main.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/slick.min.js") }}" id="scripts"></script>
     <script type="text/javascript">
         $(function(){
             if($('.comment ul').length > 0) {

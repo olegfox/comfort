@@ -202,7 +202,7 @@ class AdminController extends StoreController {
                             ->redirect(
                                     $this
                                     ->generateUrl(
-                                            'AslanAdminBundle_admin_homepage'), 301);
+                                            'AslanAdminBundle_admin_place'), 301);
         }
     }
 
@@ -774,7 +774,7 @@ class AdminController extends StoreController {
                                     ->redirect(
                                             $this
                                             ->generateUrl(
-                                                    'AslanAdminBundle_admin_homepage'), 301);
+                                                    'AslanAdminBundle_admin_place'), 301);
                 }
             }
         }

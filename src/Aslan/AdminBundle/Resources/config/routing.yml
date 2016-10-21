@@ -115,7 +115,7 @@ AslanAdminBundle_admin_img_delete2:
    
 AslanAdminBundle_admin_homepage:
     pattern:  /admin/homepage
-    defaults: { _controller: AslanAdminBundle:Admin:adminPage}
+    defaults: { _controller: AslanAdminBundle:Place:adminPlace}
 
 AslanAdminBundle_admin_newmiddle:
     pattern:  /admin/newmiddle

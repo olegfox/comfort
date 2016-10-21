@@ -287,4 +287,8 @@ class News
             'parentId' => is_object($this->getParent()) ? $this->getParent()->getId() : null
         ));
     }
+
+    public function getPreview() {
+        return isset($this->getPageimgs()[0]) ? $this->getPageimgs()[0] : false;
+    }
 }
