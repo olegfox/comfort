@@ -13,10 +13,13 @@ class PageController extends StoreController
      */
     public function indexAction()
     {
-        $categories = parent::findAllAction('News');
+        $repository = $this->getDoctrine()->getRepository('AslanStoreBundle:News');
+        $specialCategory = $repository->findOneBy(array("special" => 1));
+        $categories = $repository->findBy(array("special" => 0));
 
         return $this->render('AslanPageBundle:Main:index.html.twig', array(
-            "categories" => $categories
+            "categories" => $categories,
+            "specialCategory" => $specialCategory
         ));
     }
 

@@ -677,3 +677,78 @@ form {
   }
   // end Module Form
 }
+
+.panel {
+  &.panel-head {
+    position: relative;
+    background-color: #d8d8d8;
+    min-height: 550px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    h1 {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      color: #fff;
+      padding: 35px 50px;
+      font-weight: 500;
+    }
+  }
+  &.panel-description {
+    padding: 35px 50px;
+    color: #000;
+    font-family: Ubuntu!important;
+    font-size: 14px!important;
+    * {
+      all: initial!important;
+      color: #000!important;
+      margin: 0!important;
+      font-family: Ubuntu!important;
+      font-size: 14px!important;
+      line-height: 2em!important;
+    }
+  }
+}
+
+.wrap-form.level108 {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+a.close {
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  top: 50px;
+  right: 50px;
+  z-index: 1;
+  span {
+    &.line {
+      position: absolute;
+      background: #fff;
+      height: 2px;
+      width: 50px;
+      &.line1 {
+        top: 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &.line2 {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

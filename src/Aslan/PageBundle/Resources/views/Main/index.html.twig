@@ -82,7 +82,7 @@
 
     <!-- Module Square -->
     {% if categories|length > 0 %}
-    <div class="wrap-square level-block level92">
+    <div class="wrap-square level-block level92" id="categories">
         <div class="square">
 
             <!-- Squares Block -->
@@ -108,6 +108,13 @@
                         <p>&nbsp;</p>
 
                         <p><span style="font-size:16px"><span style="color:#000000"><span style="font-family:arial,sans-serif">Мы предлагаем такую услугу, как составление дизайн-проекта. Наши дизайнеры могут воплотить в дизайн-проекте любые ваши желания, а если вы ещё не знаете чего хотите, то в этом нет ничего страшного, проект также будет выполнен на высочайшем уровне. А в случае, если вас что-то не устроит, то это будет обсуждаться, и в итоге вы получите то, что придется вам по вкусу. У нас индивидуальный подход к каждому нашему клиенту, мы стараемся и делаем так, чтобы все были довольны результатом работы.</span></span></span></p>
+
+                        {% if specialCategory %}
+                        <p>
+                            <a href="{{ path('AslanPageBundle_page', {slug: specialCategory.slug}) }}">Ещё</a>
+                        </p>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

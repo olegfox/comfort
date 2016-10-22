@@ -73,7 +73,7 @@ class News
      * @ORM\Column(type="boolean", nullable=true)
      */
 
-    protected $special = false;
+    protected $special = true;
 
     /**
      * Get id
@@ -297,25 +297,5 @@ class News
 
     public function getPreview() {
         return isset($this->getPageimgs()[0]) ? $this->getPageimgs()[0] : false;
-    }
-
-    /**
-     * Set special
-     *
-     * @param boolean $special
-     */
-    public function setSpecial($special)
-    {
-        $this->special = $special;
-    }
-
-    /**
-     * Get special
-     *
-     * @return boolean 
-     */
-    public function getSpecial()
-    {
-        return $this->special;
     }
 }

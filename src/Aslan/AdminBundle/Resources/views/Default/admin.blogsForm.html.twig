@@ -18,6 +18,15 @@
             <tr>
                 <td>
                     <div class="divInput">
+                        {{ form_label(form.special, 'Специальная категория') }}
+                        {{ form_errors(form.special) }}
+                        {{ form_widget(form.special) }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="divInput">
                         {{ form_label(form.meta_title, 'Мета-заголовок') }}
                         {{ form_errors(form.meta_title) }}
                         {{ form_widget(form.meta_title) }}

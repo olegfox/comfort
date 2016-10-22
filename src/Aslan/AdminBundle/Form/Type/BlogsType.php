@@ -22,6 +22,12 @@ class BlogsType extends AbstractType {
                     ->setParameter('head', '&nbsp;');
             }
         ));
+        $builder->add('special', 'choice', array(
+            "choices" => array(
+                0 => 'Нет',
+                1 => 'Да'
+            )
+        ));
         $builder->add('meta_title', null, array(
             'required' => false
         ));
