@@ -580,6 +580,30 @@ form {
       }
     }
   }
+
+  .panel {
+    &.panel-head {
+      h1 {
+        padding: 17px 25px!important;
+      }
+    }
+    &.panel-description {
+      padding: 17px 25px!important;
+    }
+  }
+
+  a.close {
+    top: 25px!important;
+    right: 25px!important;
+    span.line {
+      &.line1 {
+        top: 17px!important;
+      }
+      &.line2 {
+        top: 17px!important;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 320px) {

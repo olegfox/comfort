@@ -36,6 +36,13 @@ h2 {
   min-height: 300px;
   width: 25%; }
 
+.wrap-square.pictures ul li {
+  min-height: auto;
+  width: 33.33%; }
+
+.wrap-square.pictures ul li img {
+  visibility: hidden; }
+
 .wrap-square.level92 ul li .title {
   font-size: 16; }
 
@@ -124,5 +131,21 @@ h2 {
 
 .wrap-line.level122 .line .wrap-center-block .center-block {
   vertical-align: middle; }
+
+.wrap-square.pictures .square ul li a.wrap_wrap {
+  position: static;
+  width: auto;
+  height: auto; }
+
+p.special-category {
+  text-align: center;
+  padding-top: 40px; }
+  p.special-category a {
+    display: inline-block;
+    margin: 0 auto;
+    background: #ccc;
+    color: #fff;
+    padding: 14px 10px;
+    border-radius: 50%; }
 
 /*# sourceMappingURL=custom.css.map */

@@ -27,7 +27,7 @@
         {{ item.page|raw }}
     </div>
     {% if item.pageimgs|length > 0 %}
-        <div class="wrap-square level-block level92">
+        <div class="wrap-square level-block level92 pictures">
             <div class="square">
                 <ul>
                     {% for img in item.pageimgs %}
@@ -38,6 +38,7 @@
                                     <div class="inner">
                                         <div class="shadow"></div>
                                         <div class="blur"></div>
+                                        <img src="{{ picture.zoomCrop(500, 500) }}" alt=""/>
                                     </div>
                                 </div>
                             </a>
