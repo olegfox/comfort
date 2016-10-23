@@ -2,6 +2,7 @@
     {% if items|length > 0 %}
         <ul>
         {% for item in items %}
+            {% if item.preview.img is defined %}
             {% set img = image('media/pictures/'~item.preview.img) %}
             <li style="{% if item.preview %}background-image: url('{{ img.zoomCrop(500, 500) }}'); background-size: cover; background-attachment: scroll; {% endif %}background-color: #000;">
                 <a href="{{ path('AslanPageBundle_page', {slug: item.slug}) }}" class="wrap_wrap">
@@ -14,6 +15,7 @@
                     </div>
                 </a>
             </li>
+            {% endif %}
         {% endfor %}
         </ul>
     {% endif %}

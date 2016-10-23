@@ -42,8 +42,11 @@
         function ajaxRout(id) {
             $(".simplemodal-data form").on('submit', function() {
                 var that = this;
+                var array = $(that).serializeArray();
 
-                $.post($(that).attr('action'), $(that).serialize(), function(data) {
+                array['page'] = $("#cke_contents_names_page iframe").contents().find('.cke_show_borders').html();
+
+                $.post($(that).attr('action'), JSON.stringify(array), function(data) {
                     showResponse(data, id);
                 });
 
@@ -61,7 +64,7 @@
 
             if ((!responseText.parentId && !id) || responseText.parentId == id) {
                 $container = $('#container');
-                $container.find('.box').eq($container.find('.box').length - 2).after('<div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + responseText['id'] + '"><div id="c' + responseText['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + responseText['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + responseText['id'] + '" onclick="parkettImg(id);" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + (responseText['head'] ? responseText['head'] : '') + '</h2></div></div>');
+                $container.find('.box').eq($container.find('.box').length - 2).after('<div class="box" style="background:#000; background-repeat:no-repeat; background-size:225px 225px; display:compact;" id="' + responseText['id'] + '"><div id="c' + responseText['id'] + '" onclick="deleteParkett(id);" class="closeButton"></div><div id="c' + responseText['id'] + '" onclick="editParkett(id);" class="editButton"></div><div id="cc' + responseText['id'] + '" onclick="parkettImg(' + responseText['id'] + ');" style="width:205px; height:205px; padding:5px; cursor:pointer; display: table-cell;vertical-align: middle; "><h2>' + (responseText['head'] ? responseText['head'] : '') + '</h2></div></div>');
                 $container.masonry('reload');
             } else {
                 if (!responseText.parentId) {
@@ -127,8 +130,9 @@
                     $('#names_meta_title').val(page.metaTitle);
                     $('#names_meta_description').val(page.metaDescription);
                     $('#names_meta_keywords').val(page.metaKeywords);
-                    $('#names_head').text(page.head);
+                    $('#names_head').val(page.head);
                     $('#names_page').val(page.page);
+                    $('#names_special').val(page.special ? 1 : 0);
                     reloadCKEDITOR();
                 });
             });

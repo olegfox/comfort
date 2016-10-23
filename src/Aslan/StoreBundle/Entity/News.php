@@ -286,6 +286,7 @@ class News
         return json_encode(array(
             'id' => $this->id,
             'head' => $this->head,
+            'special' => $this->special,
             'slug' => $this->slug,
             'metaTitle' => $this->metaTitle,
             'metaDescription' => $this->metaDescription,
