@@ -22,32 +22,34 @@
 {% endmacro %}
 
 {% macro one(item) %}
-    <div class="panel panel-head" style="background-image: url('{{ image('media/pictures/'~item.pageimgs[0].img) }}'); background-size: cover;">
-        <h1>{{ item.head }}</h1>
-    </div>
-    <div class="panel panel-description">
-        {{ item.page|raw }}
-    </div>
-    {% if item.pageimgs|length > 0 %}
-        <div class="wrap-square level-block level92 pictures">
-            <div class="square">
-                <ul>
-                    {% for img in item.pageimgs %}
-                        {% set picture = image('media/pictures/'~img.img) %}
-                        <li style="background-image: url('{{ picture.zoomCrop(500, 500) }}'); background-size: cover; background-attachment: scroll; background-color: #000;">
-                            <a href="{{ asset('media/pictures/'~img.img) }}" data-width="{{ picture.width() }}" data-height="{{ picture.height() }}" class="wrap_wrap">
-                                <div class="wrap">
-                                    <div class="inner">
-                                        <div class="shadow"></div>
-                                        <div class="blur"></div>
-                                        <img src="{{ picture.zoomCrop(500, 500) }}" alt=""/>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="wrap-category">
+        <div class="panel panel-head" style="background-image: url('{{ image('media/pictures/'~item.pageimgs[0].img) }}'); background-size: cover;">
+            <h1>{{ item.head }}</h1>
         </div>
-    {% endif %}
+        <div class="panel panel-description">
+            {{ item.page|raw }}
+        </div>
+        {% if item.pageimgs|length > 0 %}
+            <div class="wrap-square level-block level92 pictures">
+                <div class="square">
+                    <ul>
+                        {% for img in item.pageimgs %}
+                            {% set picture = image('media/pictures/'~img.img) %}
+                            <li style="background-image: url('{{ picture.zoomCrop(500, 500) }}'); background-size: cover; background-attachment: scroll; background-color: #000;">
+                                <a href="{{ asset('media/pictures/'~img.img) }}" data-width="{{ picture.width() }}" data-height="{{ picture.height() }}" class="wrap_wrap">
+                                    <div class="wrap">
+                                        <div class="inner">
+                                            <div class="shadow"></div>
+                                            <div class="blur"></div>
+                                            <img src="{{ picture.zoomCrop(500, 500) }}" alt=""/>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endmacro %}

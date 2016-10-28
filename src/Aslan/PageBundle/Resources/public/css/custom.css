@@ -41,7 +41,8 @@ h2 {
   width: 33.33%; }
 
 .wrap-square.pictures ul li img {
-  visibility: hidden; }
+  visibility: hidden;
+  width: 100%; }
 
 .wrap-square.level92 ul li .title {
   font-size: 16; }

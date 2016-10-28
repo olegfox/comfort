@@ -44,9 +44,9 @@
                 var that = this;
                 var array = $(that).serializeArray();
 
-                array['page'] = $("#cke_contents_names_page iframe").contents().find('.cke_show_borders').html();
+                array[7].value = $("#cke_contents_names_page iframe").contents().find('.cke_show_borders').html();
 
-                $.post($(that).attr('action'), JSON.stringify(array), function(data) {
+                $.post($(that).attr('action'), array, function(data) {
                     showResponse(data, id);
                 });
 

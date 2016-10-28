@@ -441,6 +441,7 @@ form .btn {
     padding: 35px 50px;
     font-weight: 500; }
 .panel.panel-description {
+  background: #fff;
   padding: 35px 50px;
   color: #000;
   font-family: Ubuntu !important;
@@ -457,12 +458,12 @@ form .btn {
   margin-top: 0; }
 
 a.close {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   width: 50px;
   height: 50px;
-  top: 50px;
-  right: 50px;
+  top: 40px;
+  right: 20px;
   z-index: 1; }
   a.close span.line {
     position: absolute;
@@ -478,5 +479,28 @@ a.close {
       -webkit-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
       transform: rotate(-45deg); }
+
+.category-template {
+  background: #4a4a4a; }
+  .category-template .wrap-category {
+    padding: 90px 90px 0 90px; }
+  .category-template .wrap-square .square ul {
+    background: #fff; }
+  .category-template .wrap-form.level108 {
+    margin: 0 90px; }
+  .category-template .wrap-form form .form-input-field button {
+    padding: 0 75px; }
+  .category-template .wrap-line.level122 {
+    margin: 0 90px 90px 90px; }
+  @media screen and (max-width: 1024px) {
+    .category-template .wrap-form form .form-input-field button {
+      margin-top: 0; } }
+  @media screen and (max-width: 414px) {
+    .category-template .wrap-category {
+      padding: 0; }
+    .category-template .wrap-form.level108 {
+      margin: 0; }
+    .category-template .wrap-line.level122 {
+      margin: 0; } }
 
 /*# sourceMappingURL=main.css.map */
