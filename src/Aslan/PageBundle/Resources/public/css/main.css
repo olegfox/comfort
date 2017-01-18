@@ -137,16 +137,22 @@ input:focus, textarea:focus, keygen:focus, select:focus, button:focus {
         vertical-align: top;
         overflow: hidden; }
         .wrap-square .square ul li .wrap_wrap {
-          position: absolute;
-          height: 100%;
-          width: 100%; }
+          position: relative; }
           .wrap-square .square ul li .wrap_wrap .wrap {
-            display: table;
-            height: 100%;
-            width: 100%; }
+            margin: 13px 13px 0 13px;
+            background: #000; }
             .wrap-square .square ul li .wrap_wrap .wrap .inner {
               display: table-cell;
               vertical-align: middle; }
+            .wrap-square .square ul li .wrap_wrap .wrap img {
+              width: 100%;
+              opacity: 0.6;
+              -webkit-transition: opacity 0.5s;
+              -moz-transition: opacity 0.5s;
+              -o-transition: opacity 0.5s;
+              transition: opacity 0.5s; }
+              .wrap-square .square ul li .wrap_wrap .wrap img:hover {
+                opacity: 1; }
         .wrap-square .square ul li .shadow {
           position: absolute;
           top: 0;
@@ -170,7 +176,7 @@ input:focus, textarea:focus, keygen:focus, select:focus, button:focus {
           z-index: 2; }
         .wrap-square .square ul li .title {
           position: relative;
-          padding: 50px;
+          padding: 13px;
           z-index: 2; }
 
 .wrap-map {
@@ -196,6 +202,8 @@ input:focus, textarea:focus, keygen:focus, select:focus, button:focus {
         display: table-cell;
         text-align: center;
         vertical-align: middle; }
+        .wrap-comment .comment .wrap_wrap .wrap .inner {
+          margin: 0 13px; }
     .wrap-comment .comment .icon {
       display: inline-block;
       border-radius: 50%;
@@ -345,7 +353,8 @@ form .btn {
     .wrap-line .line .wrap-center-block .center-block .text-block {
       margin: 0 auto !important;
       padding: 20px 0 !important;
-      width: auto !important; }
+      width: auto !important;
+      text-align: justify; }
       .wrap-line .line .wrap-center-block .center-block .text-block img {
         width: 100% !important;
         height: auto !important; }
@@ -422,8 +431,7 @@ form .btn {
     margin-right: 0; } }
 .panel.panel-head {
   position: relative;
-  background-color: #d8d8d8;
-  min-height: 550px; }
+  background-color: #d8d8d8; }
   .panel.panel-head::before {
     content: '';
     position: absolute;
@@ -436,16 +444,19 @@ form .btn {
   .panel.panel-head h1 {
     position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
     color: #fff;
     padding: 35px 50px;
-    font-weight: 500; }
+    font-weight: 500;
+    text-align: center; }
 .panel.panel-description {
   background: #fff;
   padding: 35px 50px;
   color: #000;
   font-family: Ubuntu !important;
-  font-size: 14px !important; }
+  font-size: 14px !important;
+  text-align: justify; }
   .panel.panel-description * {
     all: initial !important;
     color: #000 !important;
@@ -483,9 +494,44 @@ a.close {
 .category-template {
   background: #4a4a4a; }
   .category-template .wrap-category {
-    padding: 90px 90px 0 90px; }
+    padding: 125px 90px 0 90px; }
   .category-template .wrap-square .square ul {
     background: #fff; }
+  .category-template .wrap-square {
+    background: #fff; }
+    .category-template .wrap-square .square {
+      margin: 0 13px;
+      padding-bottom: 13px; }
+      .category-template .wrap-square .square ul li .wrap_wrap {
+        position: absolute;
+        top: 13px;
+        bottom: 13px;
+        left: 13px;
+        right: 13px; }
+        .category-template .wrap-square .square ul li .wrap_wrap .wrap {
+          display: table;
+          width: auto;
+          height: auto;
+          margin: 13px; }
+          .category-template .wrap-square .square ul li .wrap_wrap .wrap .inner {
+            display: table-cell;
+            vertical-align: middle; }
+      .category-template .wrap-square .square ul li .shadow {
+        position: absolute;
+        top: 13px;
+        bottom: 13px;
+        left: 13px;
+        right: 13px;
+        background-color: #000;
+        opacity: 0;
+        z-index: 1; }
+      .category-template .wrap-square .square ul li .blur {
+        position: absolute;
+        top: 13px;
+        bottom: 13px;
+        left: 13px;
+        right: 13px;
+        z-index: 1; }
   .category-template .wrap-form.level108 {
     margin: 0 90px; }
   .category-template .wrap-form form .form-input-field button {

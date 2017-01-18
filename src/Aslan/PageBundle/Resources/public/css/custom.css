@@ -57,9 +57,6 @@ h2 {
 .wrap-square.level92 .square ul li:hover .shadow {
   opacity: 0.3; }
 
-.wrap-square.level92 .square ul li .title {
-  text-shadow: 1px 1px 2px black, 0 0 1em black; }
-
 .wrap-square.level104 ul li {
   min-height: 300px;
   width: 25%; }
@@ -110,7 +107,8 @@ h2 {
   width: 1000px; }
 
 .wrap-comment.level107 ul li {
-  min-height: 500px; }
+  min-height: 500px;
+  vertical-align: top; }
 
 .wrap-comment.level107 ul li .wrap_wrap {
   max-width: 1000px; }

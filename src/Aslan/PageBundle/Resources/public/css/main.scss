@@ -241,16 +241,24 @@ input, textarea, keygen, select, button {
         overflow: hidden;
 
         .wrap_wrap{
-          position: absolute;
-          height: 100%;
-          width: 100%;
+          position: relative;
           .wrap{
-            display: table;
-            height: 100%;
-            width: 100%;
+            margin: 13px 13px 0 13px;
+            background: #000;
             .inner{
               display: table-cell;
               vertical-align: middle;
+            }
+            img {
+              width: 100%;
+              opacity: 0.6;
+              -webkit-transition: opacity 0.5s;
+              -moz-transition: opacity 0.5s;
+              -o-transition: opacity 0.5s;
+              transition: opacity 0.5s;
+              &:hover {
+                opacity: 1;
+              }
             }
           }
         }
@@ -295,7 +303,7 @@ input, textarea, keygen, select, button {
         .title {
 
           position: relative;
-          padding: 50px;
+          padding: 13px;
           z-index: 2;
 
         }
@@ -337,6 +345,9 @@ input, textarea, keygen, select, button {
         display: table-cell;
         text-align: center;
         vertical-align: middle;
+        .inner {
+          margin: 0 13px;
+        }
       }
     }
     .icon{
@@ -560,6 +571,7 @@ form {
             margin: 0 auto!important;
             padding: 20px 0!important;
             width: auto!important;
+            text-align: justify;
             img {
               width: 100%!important;
               height: auto!important;
@@ -706,7 +718,6 @@ form {
   &.panel-head {
     position: relative;
     background-color: #d8d8d8;
-    min-height: 550px;
     &::before {
       content: '';
       position: absolute;
@@ -720,10 +731,12 @@ form {
     h1 {
       position: absolute;
       left: 0;
+      right: 0;
       bottom: 0;
       color: #fff;
       padding: 35px 50px;
       font-weight: 500;
+      text-align: center;
     }
   }
   &.panel-description {
@@ -732,6 +745,7 @@ form {
     color: #000;
     font-family: Ubuntu!important;
     font-size: 14px!important;
+    text-align: justify;
     * {
       all: initial!important;
       color: #000!important;
@@ -781,10 +795,62 @@ a.close {
 .category-template {
   background: #4a4a4a;
   .wrap-category {
-    padding: 90px 90px 0 90px;
+    padding: 125px 90px 0 90px;
   }
   .wrap-square .square ul {
     background: #fff;
+  }
+  .wrap-square {
+    background: #fff;
+    .square {
+      margin: 0 13px;
+      padding-bottom: 13px;
+      ul {
+        li {
+          .wrap_wrap{
+            position: absolute;
+            top: 13px;
+            bottom: 13px;
+            left: 13px;
+            right: 13px;
+            .wrap{
+              display: table;
+              width: auto;
+              height: auto;
+              margin: 13px;
+              .inner{
+                display: table-cell;
+                vertical-align: middle;
+              }
+            }
+          }
+
+          .shadow {
+
+            position: absolute;
+            top: 13px;
+            bottom: 13px;
+            left: 13px;
+            right: 13px;
+            background-color: #000;
+            opacity: 0;
+            z-index: 1;
+
+          }
+
+          .blur {
+
+            position: absolute;
+            top: 13px;
+            bottom: 13px;
+            left: 13px;
+            right: 13px;
+            z-index: 1;
+
+          }
+        }
+      }
+    }
   }
   .wrap-form.level108 {
     margin: 0 90px;
