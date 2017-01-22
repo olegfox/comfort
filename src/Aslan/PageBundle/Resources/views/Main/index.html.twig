@@ -13,7 +13,7 @@
                     <div class="table">
                         <div class="table-cell">
                             <div class="text">
-                                Сектор Комфорта
+                                <a href="{{ path('AslanPageBundle_home') }}"><img src="{{ asset('bundles/aslanpage/images/logo.png') }}" alt=""/></a>
                             </div>
                         </div>
                     </div>
@@ -40,6 +40,21 @@
         </div>
     </div>
 
+    <!-- Module Square -->
+    {% if specialCategories|length > 0 %}
+        <div class="wrap-square level-block level92" id="special_categories">
+            <div class="square">
+
+                <!-- Squares Block -->
+                {{ grid(specialCategories) }}
+                <!-- end Squares Block -->
+
+            </div>
+        </div>
+    {% endif %}
+    <!-- end Module Square -->
+
+
     <!-- Form Contact -->
     {% include 'AslanPageBundle:Contact:index.html.twig' %}
     <!-- end Form Contact -->
@@ -55,21 +70,21 @@
             <div class="wrap-center-block">
                 <div class="center-block">
                     <div class="text-block">
-                        <p style="text-align:center"><span style="color:#000000">Мой дом - моя крепость!&nbsp;</span></p>
+                        <p><span style="color:#000000">Мой дом - моя крепость!&nbsp;</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Каждый стремится обустроить свое жилище, чтобы в нем было комфортно проводить время. Не удивительно, ведь в доме происходит большая часть нашей жизни. В доме мы спим, кушаем, отдыхаем, в доме растут наши дети. В своем доме мы можем чувствовать себя в безопасности. Это наша маленькая вселенная, наш маленький мир, где мы хозяева.</span></p>
+                        <p><span style="color:#000000">Каждый стремится обустроить свое жилище, чтобы в нем было комфортно проводить время. Не удивительно, ведь в доме происходит большая часть нашей жизни. В доме мы спим, кушаем, отдыхаем, в доме растут наши дети. В своем доме мы можем чувствовать себя в безопасности. Это наша маленькая вселенная, наш маленький мир, где мы хозяева.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Всем хочется, чтобы дома было уютно и красиво. Наши дизайнеры, как художники, помогут вам расписать стены яркими красками, сделать облик вашего жилища уникальным, неповторимым.</span></p>
+                        <p><span style="color:#000000">Всем хочется, чтобы дома было уютно и красиво. Наши дизайнеры, как художники, помогут вам расписать стены яркими красками, сделать облик вашего жилища уникальным, неповторимым.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Мы сделаем вам кухню, с которой не захочется уходить, на ней будет приятно готовить и кушать вместе, всей семьей.</span></p>
+                        <p><span style="color:#000000">Мы сделаем вам кухню, с которой не захочется уходить, на ней будет приятно готовить и кушать вместе, всей семьей.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Мы сделаем детскую такую же яркую, как счастливое детство, где ваши дети будут играть и постигать знания, которые пригодятся им в будущем.</span></p>
+                        <p><span style="color:#000000">Мы сделаем детскую такую же яркую, как счастливое детство, где ваши дети будут играть и постигать знания, которые пригодятся им в будущем.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Мы сделаем спальню, в которой не захочется просыпаться, с красивой большой кроватью, большим зеркалом.</span></p>
+                        <p><span style="color:#000000">Мы сделаем спальню, в которой не захочется просыпаться, с красивой большой кроватью, большим зеркалом.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Мы сделаем вам ваш маленький мир, о котором вы мечтали когда-то в детстве.</span></p>
+                        <p><span style="color:#000000">Мы сделаем вам ваш маленький мир, о котором вы мечтали когда-то в детстве.</span></p>
 
-                        <p style="text-align:center"><span style="color:#000000">Мы &quot;Сектор Комфорта&quot; рады работать с вами и для вас.</span></p>
+                        <p><span style="color:#000000">Мы &quot;Сектор Комфорта&quot; рады работать с вами и для вас.</span></p>
                     </div>
                 </div>
             </div>
@@ -93,36 +108,5 @@
     </div>
     {% endif %}
     <!-- end Module Square -->
-
-    <!-- Module Line -->
-    <div class="wrap-line level-block level106">
-        <div class="shadow"></div>
-        <div class="line">
-
-            <!-- Center Block -->
-            <div class="wrap-center-block">
-                <div class="center-block">
-                    <div class="text-block">
-                        <h1 style="text-align:center"><span style="color:#000000">Дизайн проекты</span></h1>
-
-                        <p>&nbsp;</p>
-
-                        <p><span style="font-size:16px"><span style="color:#000000"><span style="font-family:arial,sans-serif">Мы предлагаем такую услугу, как составление дизайн-проекта. Наши дизайнеры могут воплотить в дизайн-проекте любые ваши желания, а если вы ещё не знаете чего хотите, то в этом нет ничего страшного, проект также будет выполнен на высочайшем уровне. А в случае, если вас что-то не устроит, то это будет обсуждаться, и в итоге вы получите то, что придется вам по вкусу. У нас индивидуальный подход к каждому нашему клиенту, мы стараемся и делаем так, чтобы все были довольны результатом работы.</span></span></span></p>
-
-                        {% if specialCategory %}
-                        <p class="special-category">
-                            <a href="{{ path('AslanPageBundle_page', {slug: specialCategory.slug}) }}">Ещё</a>
-                        </p>
-                        {% endif %}
-
-                    </div>
-                </div>
-            </div>
-            <!-- end Center Block -->
-
-        </div>
-    </div>
-    <!-- end Module Line -->
-
     {{ parent() }}
 {% endblock %}

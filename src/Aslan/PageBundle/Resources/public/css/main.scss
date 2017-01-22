@@ -81,6 +81,7 @@ input, textarea, keygen, select, button {
         img{
           display: inline-block;
           margin-bottom: 20px;
+          height: 100px;
         }
       }
 
@@ -877,4 +878,36 @@ a.close {
       margin: 0;
     }
   }
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: fixed;
+  z-index: 10000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.pace img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+#special_categories {
+  padding-top: 15px;
 }

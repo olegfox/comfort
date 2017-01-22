@@ -1,4 +1,7 @@
 $(function(){
+    $(window).load(function(){
+        $(".pace").fadeOut(1500);
+    });
     jQuery('.wrap-header').each(function(i, e) {
         if(jQuery(e).attr('data-video') != undefined) {
             if(jQuery(e).data('video').length > 0) {
@@ -11,7 +14,7 @@ $(function(){
                     autoplay: true,
                     loop: true,
                     position: '50% 50%', // Similar to the CSS `background-position` property.
-                    posterType: 'detect', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
+                    posterType: 'png', // Poster image type. "detect" — auto-detection; "none" — no poster; "jpg", "png", "gif",... - extensions.
                     resizing: true // Auto-resizing, read: https://github.com/VodkaBears/Vide#resizing...
                 });
             }

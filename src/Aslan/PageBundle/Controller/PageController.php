@@ -14,12 +14,12 @@ class PageController extends StoreController
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('AslanStoreBundle:News');
-        $specialCategory = $repository->findOneBy(array("special" => 1));
+        $specialCategories = $repository->findBy(array("special" => 1));
         $categories = $repository->findBy(array("special" => 0));
 
         return $this->render('AslanPageBundle:Main:index.html.twig', array(
             "categories" => $categories,
-            "specialCategory" => $specialCategory
+            "specialCategories" => $specialCategories
         ));
     }
 

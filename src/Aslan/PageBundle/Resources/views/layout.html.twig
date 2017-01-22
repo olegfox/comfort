@@ -24,7 +24,14 @@
     <link rel="stylesheet" href="{{ asset('bundles/aslanpage/css/custom.css') }}" type="text/css"/>
 {% endblock %}
 
+{% block body_attribute %}class="pace-done"{% endblock %}
+
 {% block body %}
+    {% if app.request.attributes.get('_route') == 'AslanPageBundle_home' %}
+    <div class="pace">
+        <img src="{{ asset('bundles/aslanpage/images/loader.gif') }}" alt="" width="50px" height="50px"/>
+    </div>
+    {% endif %}
     <!-- Module Form -->
     {% include 'AslanPageBundle:Feedback:index.html.twig' %}
     <!-- end Module Form -->
@@ -61,6 +68,7 @@
     <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/wow.min.js") }}" id="scripts"></script>
     <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/main.js") }}" id="scripts"></script>
     <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/slick.min.js") }}" id="scripts"></script>
+    <script type="text/javascript" src="{{ asset("bundles/aslanpage/js/pace.min.js") }}" id="scripts"></script>
     <script type="text/javascript">
         $(function(){
             var initSlider = function() {
