@@ -20,10 +20,8 @@
 
 {% macro one(item) %}
     <div class="wrap-category">
-        <div class="panel panel-head">
-            <h1>{{ item.head }}</h1>
-        </div>
         <div class="panel panel-description">
+            <h1>{{ item.head }}</h1>
             {{ item.page|raw }}
         </div>
         {% if item.pageimgs|length > 0 %}

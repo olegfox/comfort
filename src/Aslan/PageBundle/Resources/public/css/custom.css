@@ -126,7 +126,8 @@ h2 {
 
 .wrap-line.level122 {
   height: 100px;
-  background-color: #b0945d; }
+  background-color: #b0945d;
+  max-width: 100%; }
 
 .wrap-line.level122 .line .wrap-center-block .center-block {
   vertical-align: middle; }
